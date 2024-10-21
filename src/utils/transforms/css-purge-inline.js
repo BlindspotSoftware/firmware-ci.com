@@ -31,8 +31,8 @@ export const purgeCSS = async (content, outputPath) => {
       ],
       css: cssFiles,
       safelist: {
-        standard: [/^m/, /^l/],
-        greedy: [/role/, /aos/],
+        standard: [/^m/, /^l/, /^:/],
+        greedy: [/role/],
       },
       keyframes: true,
     });
