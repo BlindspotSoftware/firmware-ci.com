@@ -1,0 +1,37 @@
+<svg
+  width="102"
+  height="62"
+  viewBox="0 0 102 62"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <path
+    fill="none"
+    d="M61.454 21.454H42v19.453h19.454zm.004 19.456H42.004c0 10.745 8.71 19.454 19.454 19.454V40.911ZM42 21.454h19.454C61.454 10.709 52.744 2 42 2zm38.91 0H61.458v19.453h19.454V21.454Zm0 19.456H61.458c0 10.745 8.71 19.454 19.454 19.454V40.911ZM61.457 21.454h19.454C80.91 10.709 72.2 2 61.457 2z"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-miterlimit="10"
+  />
+  <path
+    fill="none"
+    d="M100.364 21.454H80.91v19.453h19.454zm0 19.456H80.91c0 10.745 8.71 19.454 19.454 19.454V40.911ZM80.91 21.454h19.454C100.364 10.709 91.654 2 80.91 2zm-59.456 0H2v19.453h19.454zm0 0V2C10.709 2 2 10.71 2 21.454z"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-miterlimit="10"
+  />
+  <path
+    fill="none"
+    d="M21.453 21.457v19.454c10.744 0 19.453-8.71 19.453-19.454zm0-19.457v19.454c10.744.003 19.453-8.71 19.453-19.454z"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-miterlimit="10"
+  />
+  <path
+    fill="none"
+    d="M2 40.91v19.454c10.744 0 19.454-8.71 19.454-19.453H2Z"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-miterlimit="10"
+  />
+</svg>

@@ -1,0 +1,21 @@
+<header class="header" >
+  <nav class="wrapper | header__content">
+    <a href="/" class="header__logo" aria-label="FirmwareCI – Home">
+      {% icon icon = "logo" %}
+    </a>
+    <ul class="header__items" role="list">
+      {% for item in navigation.items %}
+        <li>
+          <a href="{{ item.url }}" {{ helpers.getLinkActiveState(item.url, page.url) | safe }}>
+            {{ item.text }}
+          </a>
+        </li>
+      {% endfor %}
+      <li>
+        <a href="https://app.firmware-ci.com" class="button button--secondary" rel="noopener noreferrer" target="_blank">
+          Login
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

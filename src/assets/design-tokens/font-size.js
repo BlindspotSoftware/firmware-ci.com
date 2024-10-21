@@ -6,13 +6,14 @@ import { interpolate } from "../../utils/css/interpolate";
  * You can use the `calculateTypeScale` function from `utopia-core` to generate a scale, visually customizable on https://utopia.fyi/type/calculator/ and copyable to your project in the "PostCSS" tab on the site
  */
 export const fontSize = {
-  "step--2": "0.75rem",
-  "step--1": "0.875rem",
-  "step-0": "1rem",
-  "step-1": "1.125rem",
-  "step-2": "1.25rem",
-  "step-3": "1.5rem",
-  "step-4": interpolate({ min: 24, max: 32 }),
+  sm: interpolate({ min: 14, max: 16 }),
+  base: interpolate({ min: 16, max: 18 }),
+  md: interpolate({ min: 18, max: 20 }),
+  lg: interpolate({ min: 20, max: 24 }),
+  xl: interpolate({ min: 22, max: 28 }),
+  "2xl": interpolate({ min: 24, max: 32 }),
+  "3xl": interpolate({ min: 36, max: 48 }),
+  "4xl": interpolate({ min: 40, max: 72 }),
 };
 
 /**

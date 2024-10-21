@@ -1,0 +1,61 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rem;
+  background: none;
+  block-size: 2.75rem;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  padding-inline: 1.25rem;
+  text-decoration: none;
+  transition: 0.2s ease;
+  transition-property: background-color, color, border-color;
+
+  &:is(:hover, :focus-visible) {
+    border-color: var(--color-text);
+    background: var(--color-text);
+    color: white;
+  }
+
+  &:is([disabled], [aria-disabled="true"]) {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.button--primary {
+  background-color: var(--color-text);
+  color: white;
+}
+
+.button--secondary {
+  border: 3px solid currentColor;
+}
+
+.button--large {
+  block-size: 3.5rem;
+  padding-inline: 2.25rem;
+}
+
+.button--inverted {
+  color: var(--color-gray-6);
+
+  &:hover {
+    border-color: var(--color-gray-6);
+    background-color: var(--color-gray-6);
+    color: var(--color-gray-1);
+  }
+}
+
+.button--icon-only {
+  aspect-ratio: 1;
+  padding-inline: 0;
+
+  & svg {
+    --size: 1.25rem;
+    block-size: var(--size);
+    inline-size: var(--size);
+    stroke-width: 3;
+  }
+}

@@ -1,7 +1,8 @@
-@layer reset, layout, utils, blocks;
+@layer reset, fonts, layout, utils, blocks;
 
 @import "./_media.css";
 @import "./_reset.css" layer(reset);
+@import "./_fonts.css" layer(fonts);
 
 @import-glob "./blocks/**/_*.css" layer(blocks);
 @import-glob "./layout/**/_*.css" layer(layout);
@@ -10,3 +11,16 @@
 @import "tailwindcss/base" layer(reset);
 @import "tailwindcss/components" layer(layout);
 @import "tailwindcss/utilities" layer(utils);
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: var(--text-base);
+}
+
+:focus-visible {
+  outline: 3px dashed var(--color-green);
+  outline-offset: 1px;
+}

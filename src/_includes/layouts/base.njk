@@ -26,15 +26,15 @@
   </head>
 
   <body>
-    {% include "partials/site-head.njk" %}
+    {% include "partials/header.njk" %}
 
-    <main tabindex="-1" id="main-content" class="leading-snug stack-s">
+    <main>
       {% block content %}
         {{ content | safe }}
       {% endblock %}
     </main>
 
-    {% include "partials/site-foot.njk" %}
+    {% include "partials/footer.njk" %}
     {% script src = "global.js" %}
   </body>
 </html>

@@ -1,4 +1,4 @@
-{% set pageTitle = title + ' - ' + site.name %}
+{% set pageTitle = title + ' | ' + site.name %}
 
 {# We don't want any duplication. This is likely for the home page. #}
 {% if site.name === title %}
@@ -17,7 +17,6 @@
 {% if not metaDesc %}
   {% set metaDesc = site.metaDesc %}
 {% endif %}
-
 
 <title>{{ pageTitle }}</title>
 <link rel="canonical" href="{{ currentUrl }}" />
@@ -43,4 +42,4 @@
   <meta property="og:description" content="{{ metaDesc }}" />
 {% endif %}
 
-<link rel="icon" href="/assets/images/meta/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/images/meta/favicon.png" type="image/png" />

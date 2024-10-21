@@ -1,4 +1,6 @@
-/* This file defines our media queries */
-
-@custom-media --s (width >= 25em);
-@custom-media --m (width >= 40em);
+@custom-media --xs (width > 20rem); /* 320px */
+@custom-media --sm (width > 30rem); /* 480px */
+@custom-media --md (width > 36rem); /* 576px */
+@custom-media --lg (width > 48rem); /* 768px */
+@custom-media --xl (width > 62rem); /* 992px */
+@custom-media --2xl (width > 75rem); /* 1200px */

@@ -37,6 +37,7 @@ export default {
     "fontSize",
     "lineHeight",
     "fontFamily",
+    "textAlign",
   ],
   blocklist: ["container"],
   experimental: {
