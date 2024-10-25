@@ -7,6 +7,7 @@ import { svgToSymbols } from "./src/utils/build/svg-to-symbols.js";
 import { markdownFilter } from "./src/utils/filters/markdown.js";
 import { readableDateFilter } from "./src/utils/filters/readable-date.js";
 import { toISODate } from "./src/utils/filters/to-iso-date.js";
+import { sortPostsByDate } from "./src/utils/filters/sort-by-date.js";
 
 // Plugins
 import fs from "node:fs";
@@ -58,7 +59,8 @@ export default function EleventyConfig(config) {
   // Add filters
   config.addFilter("readableDate", readableDateFilter);
   config.addFilter("toISODate", toISODate);
-  config.addFilter("markdownFilter", markdownFilter);
+  config.addFilter("sortPostsByDate", sortPostsByDate);
+  config.addFilter("markdown", markdownFilter);
   config.addFilter("limit", (arr, limit) => arr.slice(0, limit));
 
   // Add Shortcodes
@@ -70,13 +72,13 @@ export default function EleventyConfig(config) {
     // which file extensions to process
     extensions: "html",
 
-    outputDir: "./dist/assets/images/dato/",
-    urlPath: "/assets/images/dato/",
+    outputDir: "./dist/assets/images/",
+    urlPath: "/assets/images/",
 
     // Add any other Image utility options here:
 
     // optional, output image formats
-    formats: ["webp", "jpeg"],
+    formats: ["webp", "avif"],
 
     // optional, output image widths
     widths: ["auto"],
@@ -125,7 +127,6 @@ export default function EleventyConfig(config) {
   config.setUseGitIgnore(false);
 
   return {
-    markdownTemplateEngine: "njk",
     dataTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dir: {

@@ -6,17 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     {% include "partials/meta-info.njk" %}
 
-    <script>
-      document
-        .documentElement
-        .classList
-        .remove("no-js");
-      document
-        .documentElement
-        .classList
-        .add("js-active");
-    </script>
-
     {# When using fonts, load them via fonts.css before the critical CSS so they are rendered ASAP #}
     {# <link rel="stylesheet" href="/assets/css/fonts/fonts.css?{{ assetHash }}" /> #}
     {% if env.nodeenv !== 'production' %}
@@ -28,7 +17,7 @@
   <body>
     {% include "partials/header.njk" %}
 
-    <main>
+    <main class="wrapper | py-xl-2xl">
       {% block content %}
         {{ content | safe }}
       {% endblock %}

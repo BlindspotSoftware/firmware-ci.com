@@ -39,7 +39,6 @@
   );
 
   display: grid;
-
   grid-template-columns: repeat(auto-fit, minmax(var(--column-width), 1fr));
 
   /* vertical gap falls back to general gap then falls back to 1rem*/

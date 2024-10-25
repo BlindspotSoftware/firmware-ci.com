@@ -1,0 +1,17 @@
+---
+permalink: /blog/
+layout: layouts/base.njk
+title: Blog
+---
+
+<div class="stack-l">
+  <h1>Blog</h1>
+
+  <ul role="list" class="auto-grid" style="--auto-grid-gap: var(--space-m); --auto-grid-max-columns: 2">
+    {%- for post in collections.blog | sortPostsByDate -%}
+      <li>
+        {% include "partials/post-card.njk" %}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>

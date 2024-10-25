@@ -1,0 +1,21 @@
+.post-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.post-card__link {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.post-card__image {
+  aspect-ratio: 2;
+  object-fit: cover;
+  width: 100%;
+}
+
+li:has(> .post-card--highlight) {
+  grid-column: 1 / -1;
+}
