@@ -1,4 +1,4 @@
-@layer reset, fonts, layout, utils, blocks;
+@layer reset, fonts, layout, utils, plugins, blocks;
 
 @import "./_media.css";
 @import "./_reset.css" layer(reset);
@@ -7,6 +7,7 @@
 @import-glob "./blocks/**/_*.css" layer(blocks);
 @import-glob "./layout/**/_*.css" layer(layout);
 @import-glob "./utilities/**/_*.css" layer(utils);
+@import-glob "./plugins/**/_*.css" layer(plugins);
 
 @import "tailwindcss/base" layer(reset);
 @import "tailwindcss/components" layer(layout);

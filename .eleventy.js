@@ -12,6 +12,7 @@ import { sortPostsByDate } from "./src/utils/filters/sort-by-date.js";
 // Plugins
 import fs from "node:fs";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 // Transforms
 import { purgeCSS } from "./src/utils/transforms/css-purge-inline.js";
@@ -68,6 +69,8 @@ export default function EleventyConfig(config) {
   config.addShortcode("script", scriptShortcode);
 
   // Plugins
+  config.addPlugin(syntaxHighlight);
+
   config.addPlugin(eleventyImageTransformPlugin, {
     // which file extensions to process
     extensions: "html",

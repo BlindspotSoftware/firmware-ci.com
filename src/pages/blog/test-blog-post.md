@@ -2,7 +2,7 @@
 layout: "layouts/blog.njk"
 
 date: "2024-10-22"
-title: "God bless america 🫡🇺🇸🦅🦅🦅"
+title: "Test blog post"
 author: "Jens"
 image: "logo-strip.webp"
 ---

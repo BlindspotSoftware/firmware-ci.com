@@ -39,9 +39,17 @@
     margin-block-start: 1.25em;
   }
 
-  & :where(p, ul, ol, blockquote, pre) {
+  & :where(p, ul, ol, blockquote) {
     max-inline-size: 70ch;
     text-wrap: pretty;
+  }
+
+  &:where(pre) {
+    white-space: pre;
+  }
+
+  & :where(p:has(picture)) {
+    max-width: 100%;
   }
 
   & :where(button.js-dialog-trigger) {

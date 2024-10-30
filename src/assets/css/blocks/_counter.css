@@ -1,0 +1,63 @@
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--space-l);
+  justify-content: space-around;
+}
+
+.counter {
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+  text-align: center;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  width: min(10ch, 100%);
+
+  /* Start animation immediately if JS is disabled */
+  @media (scripting: none) {
+    transition: --num 1s;
+    animation: count-up 1.5s var(--ease-out-cubic) both;
+    counter-reset: num var(--num);
+  }
+
+  /* Start animation when in view, toggled via JS */
+  @media (scripting) {
+    &.is-in-view {
+      transition: --num 1s;
+      animation: count-up 1.5s var(--ease-out-cubic) both;
+      counter-reset: num var(--num);
+    }
+  }
+
+  &::before {
+    content: counter(num);
+
+    @media reader, speech, aural {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}
+
+.counter__label {
+  font-size: var(--text-lg);
+  line-height: 1.2;
+}
+
+@keyframes count-up {
+  0% {
+    --num: 0;
+  }
+  100% {
+    --num: var(--count-to);
+  }
+}

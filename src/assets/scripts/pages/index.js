@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Hero
 gsap.fromTo(
   ".hero > *",
   {
@@ -18,3 +19,20 @@ gsap.fromTo(
     ease: "circ.out",
   }
 );
+
+const counters = document.querySelectorAll(".counter");
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (
+        entry.isIntersecting &&
+        !entry.target.classList.contains("is-in-view")
+      ) {
+        entry.target.classList.add("is-in-view");
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+
+counters.forEach((counter) => counterObserver.observe(counter));

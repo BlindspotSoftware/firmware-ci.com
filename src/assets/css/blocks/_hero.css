@@ -26,7 +26,7 @@
 
 .hero__description {
   text-align: center;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   max-width: 25ch;
   text-wrap: pretty;
 }
