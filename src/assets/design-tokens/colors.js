@@ -10,6 +10,7 @@ export const colors = {
   red: "oklch(65.25% 0.1847 23.76)",
   purple: "oklch(59.31% 0.2102 304.49)",
   black: "oklch(41.84% 0 0)",
+  white: "oklch(100% 0 0)",
   bg: "oklch(90% 0 0)",
   text: "var(--color-gray-1)",
 };

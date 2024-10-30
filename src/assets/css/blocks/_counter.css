@@ -24,7 +24,6 @@
 
   /* Start animation immediately if JS is disabled */
   @media (scripting: none) {
-    transition: --num 1s;
     animation: count-up 1.5s var(--ease-out-cubic) both;
     counter-reset: num var(--num);
   }
@@ -32,7 +31,6 @@
   /* Start animation when in view, toggled via JS */
   @media (scripting) {
     &.is-in-view {
-      transition: --num 1s;
       animation: count-up 1.5s var(--ease-out-cubic) both;
       counter-reset: num var(--num);
     }

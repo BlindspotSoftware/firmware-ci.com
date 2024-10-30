@@ -7,4 +7,9 @@ permalink: /
 {% include "partials/sections/hero.njk" %}
 {% include "partials/sections/counters.njk" %}
 
+{%- for section in home.textImageSections -%}
+  {% set reverse = loop.index0 % 2 !== 0 %}
+  {% include "partials/text-image.njk" %}
+{%- endfor -%}
+
 {% script src = "pages/index.js" %}

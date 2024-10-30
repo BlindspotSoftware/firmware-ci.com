@@ -1,0 +1,32 @@
+.text-image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m-l);
+  align-items: center;
+
+  & img {
+    aspect-ratio: 1.2;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-gray-5);
+  }
+
+  & p {
+    text-wrap: pretty;
+  }
+
+  @media (--lg) {
+    flex-direction: row;
+
+    > * {
+      flex: 1;
+    }
+  }
+}
+
+.text-image--reverse {
+  @media (--lg) {
+    flex-direction: row-reverse;
+  }
+}
