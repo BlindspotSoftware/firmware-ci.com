@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--space-l);
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .counter {

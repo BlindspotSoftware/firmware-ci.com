@@ -1,4 +1,6 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 // Hero
 gsap.fromTo(
@@ -17,6 +19,7 @@ gsap.fromTo(
   }
 );
 
+// Counters
 const counters = document.querySelectorAll(".counter");
 const counterObserver = new IntersectionObserver(
   (entries) => {
@@ -33,3 +36,25 @@ const counterObserver = new IntersectionObserver(
 );
 
 counters.forEach((counter) => counterObserver.observe(counter));
+
+// Text Image Parallax
+gsap.matchMedia().add("(width > 48em)", () => {
+  gsap.utils.toArray(".text-image__copy").forEach((element) => {
+    gsap.fromTo(
+      element,
+      {
+        yPercent: 10,
+      },
+      {
+        yPercent: -10,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: element,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+  });
+});
