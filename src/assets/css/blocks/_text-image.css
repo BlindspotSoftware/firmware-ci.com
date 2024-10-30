@@ -1,4 +1,11 @@
 .text-image {
+  &.bg-white + &.bg-white,
+  &:not(.bg-white) + &:not(.bg-white) {
+    padding-top: 0;
+  }
+}
+
+.text-image__content {
   display: flex;
   flex-direction: column;
   gap: var(--space-m-l);
@@ -25,7 +32,7 @@
   }
 }
 
-.text-image--reverse {
+.text-image__content--reverse {
   @media (--lg) {
     flex-direction: row-reverse;
   }
