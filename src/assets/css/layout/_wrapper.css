@@ -4,7 +4,7 @@
  * centers the contents
  */
 .wrapper {
-  width: min(100% - var(--space-m) * 2, var(--wrapper-max, 70rem));
+  width: min(100% - var(--space-m) * 2, var(--wrapper-max, 80rem));
   margin-inline: auto;
   position: relative;
 }
