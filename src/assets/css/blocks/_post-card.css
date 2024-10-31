@@ -1,19 +1,50 @@
 .post-card {
+  padding: 0;
   display: flex;
   flex-direction: column;
   position: relative;
-}
 
-.post-card__link {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  > picture {
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  li > & {
+    height: 100%;
+  }
 }
 
 .post-card__image {
   aspect-ratio: 2;
   object-fit: cover;
   width: 100%;
+}
+
+.post-card__header {
+  padding: 1.5rem 2rem 1.25rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-card__title {
+  border-bottom: 5px solid currentColor;
+  margin-bottom: 0.3em;
+  padding-bottom: 0.3em;
+  font-weight: var(--weight-black);
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+
+  .post-card--highlight & {
+    font-size: var(--text-3xl);
+  }
+}
+
+.post-card__link {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
 }
 
 li:has(> .post-card--highlight) {

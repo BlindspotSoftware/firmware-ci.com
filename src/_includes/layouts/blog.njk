@@ -6,11 +6,21 @@ permalink: /blog/{{ page.fileSlug | slugify }}/index.html
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <article class="stack-xl wrapper">
+  <article class="post | stack-xl wrapper">
 
-    <header>
-      <a href="/blog/" aria-label="Back to blog">Blog /</a>
-      <h1 class="text-3xl leading-tight weight-ultrabold">{{ title }}</h1>
+    <header class="post__header">
+      <div class="post-header__info">
+        <h1 class="text-4xl leading-tight text-center weight-ultrabold">
+          {{ title }}
+        </h1>
+        <p>
+        by {{ author }}
+        </p>
+      </div>
+      {% if image %}
+        <img class="post__image" src="/assets/images/blog/{{ image }}" alt="" eleventy:widths="400,600,800,1000,1200" sizes="100vw" />
+      {% endif %}
+
     </header>
 
     <div class="prose">

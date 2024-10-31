@@ -1,6 +1,8 @@
 :where(.prose) {
-  font-size: var(--text-step-1);
+  /* font-size: var(--text-step-md); */
   line-height: var(--leading-relaxed);
+  max-inline-size: 65ch;
+  margin-inline: auto;
 
   & :where(h1, h2, h3, h4, h5, h6) {
     line-height: var(--leading-tight);
@@ -40,7 +42,6 @@
   }
 
   & :where(p, ul, ol, blockquote) {
-    max-inline-size: 70ch;
     text-wrap: pretty;
   }
 
@@ -49,7 +50,8 @@
   }
 
   & :where(p:has(picture)) {
-    max-width: 100%;
+    margin-inline: calc(-1 * var(--space-m));
+    max-width: calc(100% + 2 * var(--space-m));
   }
 
   & :where(button.js-dialog-trigger) {

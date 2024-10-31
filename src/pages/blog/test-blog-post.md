@@ -29,11 +29,10 @@ The most straightforward solution is to set all logos to the same height. Let's 
 </div>
 ```
 
-```css
+```scss
 .logo-row {
   --base-height: 3rem;
   --scale-factor-horizontal: 0.1;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,11 +54,11 @@ The most straightforward solution is to set all logos to the same height. Let's 
     var(--base-height) / 2,
     var(--base-height) * var(--factor-horizontal)
   );
+}
 
-  & img {
-    width: 100%;
-    height: auto;
-  }
+.logo img {
+  width: 100%;
+  height: auto;
 }
 ```
 

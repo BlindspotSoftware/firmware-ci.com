@@ -1,4 +1,4 @@
-@layer reset, fonts, layout, utils, plugins, blocks;
+@layer reset, fonts, layout, plugins, utils, blocks;
 
 @import "./_media.css";
 @import "./_reset.css" layer(reset);

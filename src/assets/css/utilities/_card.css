@@ -1,5 +1,4 @@
 .card {
-  --card-padding: 1.5rem;
   position: relative;
   padding: 1.5rem 2rem 1.5rem 1.5rem;
   background-color: var(--color-gray-6);
