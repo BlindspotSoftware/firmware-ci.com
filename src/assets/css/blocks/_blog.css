@@ -6,8 +6,24 @@
   gap: var(--space-s);
 }
 
+.blog__header {
+  & picture {
+    margin-inline: calc(-1 * var(--space-m));
+    max-width: calc(100% + 2 * var(--space-m));
+
+    @media (--2xl) {
+      margin-inline: auto;
+      max-width: 100%;
+    }
+  }
+}
+
 .blog__image {
-  aspect-ratio: 2;
   object-fit: cover;
   width: 100%;
+  aspect-ratio: 16 / 9;
+
+  @media (--md) {
+    aspect-ratio: 2;
+  }
 }

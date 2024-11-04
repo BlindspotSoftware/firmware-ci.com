@@ -9,7 +9,6 @@ export default {
    */
   getLinkActiveState(itemUrl, pageUrl) {
     let response = "";
-    console.log({ itemUrl, pageUrl });
 
     if (itemUrl === pageUrl) {
       response = ' aria-current="page"';

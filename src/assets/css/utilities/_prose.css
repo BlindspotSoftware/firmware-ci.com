@@ -49,11 +49,6 @@
     white-space: pre;
   }
 
-  & :where(picture) {
-    margin-inline: calc(-1 * var(--space-m));
-    max-width: calc(100% + 2 * var(--space-m));
-  }
-
   & :where(button.js-dialog-trigger) {
     text-decoration: underline;
   }
