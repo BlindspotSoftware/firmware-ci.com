@@ -11,8 +11,9 @@
   {% endif %}
   <header class="blog-card__header">
     <h2 class="blog-card__title">{{ post.data.title }}</h2>
-    <div>
+    <div class="cluster" style="--cluster-gap: .5em;">
       <time class="blog-card__date" datetime="{{ post.data.date }}">{{ post.data.date | readableDate }}</time>
+      <span aria-hidden="true">|</span>
       {% if post.data.author %}
         <p >by {{ post.data.author }}</p>
       {% endif %}

@@ -30,7 +30,7 @@
 
 .blog-card__title {
   border-bottom: 5px solid currentColor;
-  margin-bottom: 0.3em;
+  margin-bottom: var(--space-s);
   padding-bottom: 0.3em;
   font-weight: var(--weight-black);
   font-size: var(--text-2xl);

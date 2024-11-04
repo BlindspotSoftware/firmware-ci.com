@@ -13,11 +13,11 @@ permalink: /blog/{{ page.fileSlug | slugify }}/index.html
           {{ title }}
         </h1>
         <div class="cluster" style="--cluster-justification: center; --cluster-gap: .5em;">
+          <time class="blog-card__date" datetime="{{ date }}">{{ date | readableDate }}</time>
+          <span aria-hidden="true">|</span>
           <p>
             by {{ author }}
           </p>
-          <span aria-hidden="true">|</span>
-          <time class="blog-card__date" datetime="{{ date }}">{{ date | readableDate }}</time>
         </div>
       </div>
       {% if image %}
