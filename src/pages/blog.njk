@@ -10,7 +10,7 @@ title: Blog
   <ul role="list" class="auto-grid" style="--auto-grid-gap: var(--space-m); --auto-grid-max-columns: 2; --auto-grid-min-size: 20rem;">
     {%- for post in collections.blog | sortPostsByDate -%}
       <li>
-        {% include "partials/post-card.njk" %}
+        {% include "partials/blog-card.njk" %}
       </li>
     {%- endfor -%}
   </ul>

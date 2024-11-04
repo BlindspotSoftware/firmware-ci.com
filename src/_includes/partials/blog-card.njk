@@ -1,0 +1,22 @@
+{% set isHighlight = loop.index0 == 0 %}
+
+<article class="card | blog-card">
+  {% if post.data.image %}
+    <img
+      class="blog-card__image"
+      src="/assets/images/blog/{{ post.data.image }}"
+      alt=""
+      eleventy:widths="400,600"
+      sizes="100vw, (min-width: 45em) 50vw" />
+  {% endif %}
+  <header class="blog-card__header">
+    <h2 class="blog-card__title">{{ post.data.title }}</h2>
+    <div>
+      <time class="blog-card__date" datetime="{{ post.data.date }}">{{ post.data.date | readableDate }}</time>
+      {% if post.data.author %}
+        <p class="blog-card__date">by {{ post.data.author }}</p>
+      {% endif %}
+    </div>
+  </header>
+  <a class="blog-card__link" href="{{ post.url }}" aria-labell="View Post: {{ post.data.title }}"></a>
+</article>

@@ -20,7 +20,7 @@ gsap.fromTo(
 );
 
 // Counters
-const counters = document.querySelectorAll(".counter");
+const counters = document.querySelectorAll(".fact");
 const counterObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {

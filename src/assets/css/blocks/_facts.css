@@ -4,14 +4,14 @@
   inherits: false;
 }
 
-.counters {
+.facts {
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--space-l);
   justify-content: center;
 }
 
-.counter {
+.fact {
   line-height: 1;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@
   }
 }
 
-.counter__label {
+.fact__label {
   font-size: var(--text-lg);
   line-height: 1.2;
 }

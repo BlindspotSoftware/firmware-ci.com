@@ -1,8 +1,8 @@
-.post-header__info {
+.blog-header__info {
   padding-block: var(--space-2xl-3xl) var(--space-m-l);
 }
 
-.post__image {
+.blog__image {
   aspect-ratio: 2;
   object-fit: cover;
   width: 100%;
