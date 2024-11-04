@@ -10,7 +10,10 @@ export default {
   getLinkActiveState(itemUrl, pageUrl) {
     let response = "";
 
-    if (itemUrl === pageUrl) {
+    if (
+      itemUrl === pageUrl ||
+      (pageUrl.startsWith(itemUrl) && itemUrl !== "/")
+    ) {
       response = ' aria-current="page"';
     }
 
