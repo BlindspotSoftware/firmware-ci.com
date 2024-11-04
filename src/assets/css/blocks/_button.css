@@ -1,4 +1,11 @@
+@property --turn {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 1turn;
+}
+
 .button {
+  --transition: 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +16,8 @@
   font-weight: var(--weight-bold);
   padding-inline: 1.25rem;
   text-decoration: none;
-  transition: 0.2s ease;
-  transition-property: background-color, color, border-color;
+  transition: var(--transition) background-color, var(--transition) color,
+    var(--transition) border-color, 10s var(--ease-out-cubic) --turn;
 
   &:is(:hover, :focus-visible) {
     border-color: var(--color-text);
@@ -27,6 +34,50 @@
 .button--primary {
   background-color: var(--color-text);
   color: white;
+  position: relative;
+  isolation: isolate;
+  z-index: 0;
+
+  &:is(:hover, :focus-visible) {
+    --turn: 5.5turn;
+
+    &::after {
+      scale: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: none !important;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background-color: inherit;
+    pointer-events: none;
+  }
+
+  &::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: -0.25rem;
+    border-radius: inherit;
+    background-image: conic-gradient(
+      in oklch from var(--turn),
+      var(--color-green),
+      var(--color-orange),
+      var(--color-red),
+      var(--color-purple),
+      var(--color-green)
+    );
+    scale: 0.8;
+    transition: 0.4s var(--ease-out-cubic) scale;
+  }
 }
 
 .button--secondary {
