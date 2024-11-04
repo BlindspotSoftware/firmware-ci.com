@@ -12,12 +12,16 @@ permalink: /blog/{{ page.fileSlug | slugify }}/index.html
         <h1 class="text-4xl leading-tight text-center weight-ultrabold">
           {{ title }}
         </h1>
-        <p>
-        by {{ author }}
-        </p>
+        <div class="cluster" style="--cluster-justification: center; --cluster-gap: .5em;">
+          <p>
+            by {{ author }}
+          </p>
+          <span aria-hidden="true">|</span>
+          <time class="blog-card__date" datetime="{{ date }}">{{ date | readableDate }}</time>
+        </div>
       </div>
       {% if image %}
-        <img class="blog__image" src="/assets/images/blog/{{ image }}" alt="" eleventy:widths="400,600,800,1000,1200" sizes="100vw" />
+        <img class="blog__image" src="/assets/images/blog/{{ image }}" alt="" eleventy:widths="400,600,800,1000,1280,1600,2000" sizes="100vw" />
       {% endif %}
 
     </header>
