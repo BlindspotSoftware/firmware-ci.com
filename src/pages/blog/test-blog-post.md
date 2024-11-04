@@ -62,10 +62,10 @@ The most straightforward solution is to set all logos to the same height. Let's 
 }
 ```
 
-![Random image](../../assets/images/blog/america.jpg)
-
 ## Let's Plug in Some Numbers
 
 - Aspect Ratio of 1: (-0.1 \* 1) + 1.1 = 1
 - Aspect Ratio of 2: (-0.1 \* 2) + 1.1 = 0.9
 - Aspect Ratio of 3: (-0.1 \* 3) + 1.1 = 0.8
+
+![Random image](../../assets/images/blog/america.jpg)

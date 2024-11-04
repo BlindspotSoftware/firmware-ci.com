@@ -49,7 +49,7 @@
     white-space: pre;
   }
 
-  & :where(p:has(picture)) {
+  & :where(picture) {
     margin-inline: calc(-1 * var(--space-m));
     max-width: calc(100% + 2 * var(--space-m));
   }
