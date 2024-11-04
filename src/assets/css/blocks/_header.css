@@ -53,7 +53,8 @@
     white-space: nowrap;
     padding-inline: 0.75rem;
 
-    &[aria-current="page"] {
+    &[aria-current="page"],
+    &[data-state="active"] {
       font-weight: var(--weight-black);
       text-decoration: underline;
       text-underline-offset: 0.3em;
