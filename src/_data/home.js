@@ -23,4 +23,22 @@ export default {
       image: "hardware.avif",
     },
   ],
+  // Images are located at `src/assets/images/logos`
+  logoRow: [
+    {
+      name: "Open Compute Project",
+      image: "openstartup.png",
+      url: "https://www.opencompute.org/membership/startup-directory",
+    },
+    {
+      name: "9elements Cyber Security",
+      image: "9esec.svg",
+      url: "https://9esec.io",
+    },
+    {
+      name: "Open Source Firmware Foundation",
+      image: "osff.svg",
+      url: "https://osfw.foundation",
+    },
+  ],
 };

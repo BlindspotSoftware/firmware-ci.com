@@ -27,20 +27,13 @@
   </a>
 
   <ul role="list" class="hero__logos" aria-label="In cooperation with">
-    <li>
-      <a href="https://www.opencompute.org/membership/startup-directory" target="_blank" rel="noopener noreferrer" aria-label="Open Compute Project">
-        <img eleventy:widths="  300" src="/assets/images/logos/openstartup.png" alt="" />
-      </a>
-    </li>
-    <li>
-      <a href="https://9esec.io" target="_blank" rel="noopener noreferrer" aria-label="9elements Cyber Security">
-        <img eleventy:widths="  300" src="/assets/images/logos/9esec.svg" alt="" />
-      </a>
-    </li>
-    <li>
-      <a href="https://osfw.foundation/" target="_blank" rel="noopener noreferrer" aria-label="Open Source Firmware Foundation">
-        <img eleventy:widths="  300" src="/assets/images/logos/osff.svg" alt="" />
-      </a>
-    </li>
+    {%- for logo in home.logoRow -%}
+      <li>
+        <a href="{{ logo.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
+          <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" />
+        </a>
+      </li>
+    {%- endfor -%}
+
   </ul>
 </section>
