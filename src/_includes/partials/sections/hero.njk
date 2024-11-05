@@ -29,7 +29,7 @@
   <ul role="list" class="hero__logos" aria-label="In cooperation with">
     {%- for logo in home.logoRow -%}
       <li>
-        <a href="{{ logo.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
+        <a href="{{ logo.url }}?ref=firmware-ci.com" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
           <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" />
         </a>
       </li>
