@@ -35,10 +35,6 @@
   background-color: var(--color-text);
   color: white;
   border: none;
-
-  &:focus-visible {
-    outline: none !important;
-  }
 }
 
 .button--rainbow {
@@ -53,6 +49,11 @@
       scale: 1;
     }
   }
+
+  &:focus-visible {
+    outline: none !important;
+  }
+
   &::before {
     content: "";
     position: absolute;
