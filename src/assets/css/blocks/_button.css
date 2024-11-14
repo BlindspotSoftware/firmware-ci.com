@@ -34,9 +34,17 @@
 .button--primary {
   background-color: var(--color-text);
   color: white;
+  border: none;
+
+  &:focus-visible {
+    outline: none !important;
+  }
+}
+
+.button--rainbow {
+  z-index: 0;
   position: relative;
   isolation: isolate;
-  z-index: 0;
 
   &:is(:hover, :focus-visible) {
     --turn: 5.5turn;
@@ -45,11 +53,6 @@
       scale: 1;
     }
   }
-
-  &:focus-visible {
-    outline: none !important;
-  }
-
   &::before {
     content: "";
     position: absolute;
@@ -81,6 +84,7 @@
 }
 
 .button--secondary {
+  color: var(--color-text);
   border: 3px solid currentColor;
 }
 

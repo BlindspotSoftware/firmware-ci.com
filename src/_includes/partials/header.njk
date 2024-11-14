@@ -3,7 +3,18 @@
     <a href="/" class="header__logo" aria-label="FirmwareCI – Home">
       {% icon icon = "logo" %}
     </a>
-    <ul class="header__items" role="list">
+
+    <a href="https://app.firmware-ci.com" class="header__mobile-login-link | button button--secondary" rel="noopener noreferrer" target="_blank">
+        Login
+      </a>
+
+    <button class="button button--primary button--icon-only | header__nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">
+      <div aria-hidden></div>
+      <div aria-hidden></div>
+      <div aria-hidden></div>
+    </button>
+
+    <ul id="nav" class="header__items" role="list">
       {% for item in navigation.items %}
         <li>
           <a href="{{ item.url }}" {{ helpers.getLinkActiveState(item.url, page.url) | safe }}>
