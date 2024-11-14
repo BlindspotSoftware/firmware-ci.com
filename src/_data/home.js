@@ -1,6 +1,7 @@
 export default {
   textImageSections: [
     {
+      id: "features",
       headline: "Automated",
       text: "Run your firmware test fully automated and get the reports back into your development environment.",
       image: "screenshot.avif",
@@ -17,6 +18,7 @@ export default {
       ],
     },
     {
+      id: "updates",
       headline: "Integratable",
       text: "FirmwareCI integrates and reports back into many development environment like Github, Gitlab and Azure.",
       image: "integration.avif",

@@ -10,7 +10,7 @@ export default {
     },
     {
       text: "Updates",
-      url: "/#features",
+      url: "/#updates",
     },
     {
       text: "Blog",

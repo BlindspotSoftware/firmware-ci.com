@@ -114,3 +114,7 @@ ol:where([role="list"]) {
     scroll-behavior: auto !important;
   }
 }
+
+[id] {
+  scroll-margin-top: var(--scroll-margin-top);
+}

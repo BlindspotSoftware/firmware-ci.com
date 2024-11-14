@@ -1,4 +1,4 @@
-<section class="text-image | section {{ "bg-white" if section.bg === 'white' }}">
+<section class="text-image | section {{ "bg-white" if section.bg === 'white' }}" {{ "id=" + section.id  | safe if section.id }}>
   <div class="wrapper | text-image__content {{ 'text-image__content--reverse' if reverse }}">
     <div class="text-image__copy">
       <h2 class="text-2xl lg:text-3xl weight-ultrabold">{{ section.headline }}</h2>

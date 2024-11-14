@@ -13,6 +13,14 @@
 @import "tailwindcss/components" layer(layout);
 @import "tailwindcss/utilities" layer(utils);
 
+:root {
+  --scroll-margin-top: 4.25rem;
+
+  @media (--xl) {
+    --scroll-margin-top: 5.75rem;
+  }
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   background-color: var(--color-bg);
