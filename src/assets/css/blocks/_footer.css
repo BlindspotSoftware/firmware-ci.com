@@ -1,7 +1,6 @@
 .footer {
   display: flex;
   flex-direction: column;
-  margin-top: var(--space-2xl-3xl);
   background-color: var(--color-gray-1);
 }
 
