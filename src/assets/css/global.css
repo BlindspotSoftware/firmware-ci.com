@@ -14,10 +14,10 @@
 @import "tailwindcss/utilities" layer(utils);
 
 :root {
-  --scroll-margin-top: 4.25rem;
+  --header-height: 4.25rem;
 
   @media (--xl) {
-    --scroll-margin-top: 5.75rem;
+    --header-height: 5.75rem;
   }
 }
 

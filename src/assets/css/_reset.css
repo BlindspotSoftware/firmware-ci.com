@@ -116,5 +116,5 @@ ol:where([role="list"]) {
 }
 
 [id] {
-  scroll-margin-top: var(--scroll-margin-top);
+  scroll-margin-top: var(--header-height);
 }
