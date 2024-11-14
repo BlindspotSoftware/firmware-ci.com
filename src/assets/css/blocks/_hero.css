@@ -1,33 +1,83 @@
 .hero {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column-reverse;
+  padding-block: var(--space-m) var(--space-xl);
+  gap: var(--space-l);
+
+  @media (--xl) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-block: var(--space-2xl-3xl) var(--space-4xl);
+  }
 
   /* Hide initially for fade-up animation, only when JS is enabled with GSAP for the animation */
-  :where(&) > * {
+  :where(& > [data-stagger]) {
     @media (scripting) {
       opacity: 0;
+    }
+  }
+
+  > div {
+    margin-top: -3.5rem;
+    position: relative;
+    z-index: 10;
+
+    @media (--sm) {
+      margin-top: -6rem;
+    }
+
+    @media (--lg) {
+      margin-top: -10rem;
+    }
+
+    @media (--xl) {
+      margin-top: 0;
     }
   }
 
   & h1 {
     letter-spacing: -0.04em;
     line-height: 1.15;
-    text-align: center;
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     font-weight: var(--weight-ultrabold);
+
+    @media (--2xl) {
+      font-size: var(--text-4xl);
+    }
   }
 
   > picture {
-    border: 1px solid var(--color-gray-4);
-    max-width: 50rem;
-    overflow: hidden;
-    border-radius: 0.75rem;
+    margin-right: 1rem;
+    align-self: end;
+    max-width: 80%;
+
+    @media (--sm) {
+      max-width: 62%;
+    }
+
+    @media (--lg) {
+      margin-top: -2rem;
+    }
+
+    @media (--xl) {
+      align-self: center;
+
+      max-width: 100%;
+    }
+
+    & img {
+      border-radius: 0.75rem;
+      transform: rotateY(10deg);
+      border: 1px solid var(--color-gray-4);
+      transform: perspective(1500px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg);
+      box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
   }
 }
 
 .hero__description {
-  text-align: center;
   font-size: var(--text-lg);
   max-width: 35ch;
   text-wrap: pretty;

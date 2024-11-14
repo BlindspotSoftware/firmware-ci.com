@@ -64,6 +64,13 @@ export default function EleventyConfig(config) {
   config.addFilter("markdown", markdownFilter);
   config.addFilter("limit", (arr, limit) => arr.slice(0, limit));
 
+  const authors = fs.readFileSync("./src/_data/authors.json", "utf-8");
+  config.addFilter(
+    "getAuthor",
+    (authorId) =>
+      JSON.parse(authors).find((author) => author.id === authorId) || {}
+  );
+
   // Add Shortcodes
   config.addShortcode("icon", iconShortcode);
   config.addShortcode("script", scriptShortcode);

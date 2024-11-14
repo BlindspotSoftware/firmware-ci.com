@@ -5,7 +5,7 @@
 }
 
 .button {
-  --transition: 0.2s ease;
+  --transition: 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -103,6 +103,26 @@
     background-color: var(--color-gray-6);
     color: var(--color-gray-1);
   }
+}
+
+.button--green {
+  background-color: var(--color-green);
+  color: white;
+}
+
+.button--red {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.button--orange {
+  background-color: var(--color-orange);
+  color: black;
+}
+
+.button--purple {
+  background-color: var(--color-purple);
+  color: white;
 }
 
 .button--icon-only {

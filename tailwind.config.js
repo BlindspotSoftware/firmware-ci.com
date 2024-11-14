@@ -39,6 +39,7 @@ export default {
     "fontFamily",
     "textAlign",
     "padding",
+    "margin",
   ],
   blocklist: ["container"],
   experimental: {

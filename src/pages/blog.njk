@@ -4,8 +4,8 @@ layout: layouts/base.njk
 title: Blog
 ---
 
-<div class="wrapper stack-l">
-  <h1 class="text-4xl leading-tight text-center section weight-ultrabold">Latest Commits and Updates</h1>
+<div class="wrapper stack-l pb-2xl-3xl">
+  <h1 class="text-4xl leading-tight section weight-ultrabold">Latest Commits and Updates</h1>
 
   <ul role="list" class="auto-grid" style="--auto-grid-gap: var(--space-m); --auto-grid-max-columns: 2; --auto-grid-min-size: 20rem;">
     {%- for post in collections.blog | sortPostsByDate -%}

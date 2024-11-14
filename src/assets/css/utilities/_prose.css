@@ -1,8 +1,9 @@
 :where(.prose) {
-  /* font-size: var(--text-step-md); */
   line-height: var(--leading-relaxed);
-  max-inline-size: 65ch;
+  font-size: var(--text-md);
+  max-inline-size: 60ch;
   margin-inline: auto;
+  /* letter-spacing: -0.01em; */
 
   & :where(h1, h2, h3, h4, h5, h6) {
     line-height: var(--leading-tight);
@@ -47,6 +48,10 @@
 
   &:where(pre) {
     white-space: pre;
+  }
+
+  & pre[class*="language"] {
+    font-size: var(--text-base);
   }
 
   & :where(button.js-dialog-trigger) {

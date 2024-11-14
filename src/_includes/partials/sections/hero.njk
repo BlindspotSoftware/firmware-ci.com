@@ -1,37 +1,30 @@
-<section class="hero | section | stack-xl wrapper">
-  <h1>
-    Accelerate your
-    <br />
-     Firmware Development
-  </h1>
+<section class="hero | wrapper">
+  <div class="stack-s-m">
+    <h1 data-stagger>
+      Accelerate <br /> your 
+      Firmware <br /> Development
+    </h1>
 
-  <p class="hero__description | my-stack-space-l">
-    Test your Firmware with ease using the next-generation test framework
-    FirmwareCI.
-  </p>
+    <p  data-stagger class="hero__description">
+      Test your Firmware with ease using the next-generation test framework
+      FirmwareCI.
+    </p>
+    <a
+      data-stagger
+      href="https://app.firmware-ci.com/app/auth/login"
+      class="button button--green button--large button--rainbow"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Get Started
+    </a>
+  </div>
+
   <img
+    data-stagger
     src="/assets/images/hero.webp"
     eleventy:widths="400, 600, 800, 1200, 1600"
     eleventy:formats="avif,webp"
     alt=""
     sizes="100vw, (min-width: 50em) 50rem" />
-
-  <a
-    href="https://app.firmware-ci.com/app/auth/login"
-    class="button button--primary button--large button--rainbow | my-stack-space-l"
-    rel="noopener noreferrer"
-    target="_blank"
-  >
-    Get Started
-  </a>
-
-  <ul role="list" class="hero__logos" aria-label="In cooperation with">
-    {%- for logo in home.logoRow -%}
-      <li>
-        <a href="{{ logo.url }}?ref=firmware-ci.com" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
-          <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" />
-        </a>
-      </li>
-    {%- endfor -%}
-  </ul>
 </section>

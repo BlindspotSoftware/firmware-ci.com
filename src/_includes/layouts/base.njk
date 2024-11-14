@@ -23,6 +23,22 @@
       {% endblock %}
     </main>
 
+    <section class="bg-white stack-s py-l mt-2xl-3xl">
+
+      <h2 class="text-2xl text-center">
+        In cooperation with
+      </h2>
+      <ul role="list" class="hero__logos" aria-label="In cooperation with">
+        {%- for logo in home.logoRow -%}
+          <li>
+            <a href="{{ logo.url }}?ref=firmware-ci.com" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
+              <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" />
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
     {% include "partials/sections/newsletter.njk" %}
 
     {% include "partials/footer.njk" %}

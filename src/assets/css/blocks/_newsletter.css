@@ -1,0 +1,12 @@
+.newsletter {
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-block: var(--space-l-xl);
+  gap: var(--space-s-xl);
+}

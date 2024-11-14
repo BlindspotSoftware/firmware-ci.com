@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Hero
 gsap.fromTo(
-  ".hero > *",
+  ".hero [data-stagger]",
   {
     opacity: 0,
     y: 48,
@@ -14,7 +14,7 @@ gsap.fromTo(
     opacity: 1,
     y: 0,
     stagger: 0.22,
-    duration: 0.6,
+    duration: 0.8,
     ease: "circ.out",
   }
 );

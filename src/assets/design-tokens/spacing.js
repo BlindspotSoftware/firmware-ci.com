@@ -29,7 +29,7 @@ const spaceScale = calculateSpaceScale({
   maxSize: 20,
   positiveSteps: [1.5, 2, 3, 4, 6, 8],
   negativeSteps: [0.75, 0.5, 0.25],
-  // customSizes: ["m-xl"],
+  customSizes: ["s-xl"],
   prefix: "space",
 });
 

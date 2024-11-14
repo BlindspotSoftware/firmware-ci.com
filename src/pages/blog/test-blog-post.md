@@ -1,9 +1,9 @@
 ---
 layout: "layouts/blog.njk"
 date: "2024-10-22"
-title: "Test blog post"
-author: "Jens"
-image: "logo-strip.webp"
+title: "Ich bin ein Test-Blog-Post mit langem Titel"
+author: jens
+image: "ocean.jpg"
 ---
 
 We've all been there: you're working on a website and need to display a row of logos—clients, partners, sponsors—you name it. However, logos come in all shapes and sizes, and making them look good together can be quite challenging. How do you get them to play nice and look visually appealing without spending hours tweaking each one?

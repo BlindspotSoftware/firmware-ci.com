@@ -3,30 +3,48 @@ tags: blog
 permalink: /blog/{{ page.fileSlug | slugify }}/index.html
 ---
 
+{% set author = author | getAuthor %}
+
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <article class="blog | stack-xl wrapper">
+  <article class="blog | stack-xl" >
     <header class="blog__header">
-      <div class="blog-header__info">
-        <h1 class="text-4xl leading-tight text-center weight-ultrabold">
+      {% if image %}
+        <div class="wrapper" style="--wrapper-max: 100rem;" >
+          <img class="blog__image" src="/assets/images/blog/{{ image }}" alt="" eleventy:widths="400,600,800,1000,1280,1600,2000" sizes="100vw" />
+        </div>
+      {% endif %}
+      <div class="blog-header__info wrapper" style="--wrapper-max: 70rem;">
+        <h1>
           {{ title }}
         </h1>
-        <div class="cluster" style="--cluster-justification: center; --cluster-gap: .5em;">
+        <div class="blog__info">
           <time class="blog-card__date" datetime="{{ date }}">{{ date | readableDate }}</time>
-          <span aria-hidden="true">|</span>
-          <p>
-            by {{ author }}
-          </p>
+          <div class="blog__author">
+            {%- if author.name -%}
+              <p>
+                by {{ author.name }}
+              </p>
+            {%- endif -%}
+            {%- if author.github -%}
+              <a href="{{ author.github }}" aria-label="{{ author.name }} on GitHub">
+                {%- icon icon = "github" %}
+              </a>
+            {%- endif -%}
+
+            {%- if author.linkedin -%}
+              <a href="{{ author.linkedin }}" aria-label="{{ author.name }} on LinkedIn">
+                {%- icon icon = "linkedin" %}
+              </a>
+            {%- endif -%}
+          </div>
         </div>
       </div>
-      {% if image %}
-        <img class="blog__image" src="/assets/images/blog/{{ image }}" alt="" eleventy:widths="400,600,800,1000,1280,1600,2000" sizes="100vw" />
-      {% endif %}
 
     </header>
 
-    <div class="prose">
+    <div class="prose wrapper">
       {{ content | markdown | safe }}
     </div>
   </article>

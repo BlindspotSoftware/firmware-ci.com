@@ -1,5 +1,5 @@
 export const colors = {
-  "gray-1": "oklch(32% 0 0)",
+  "gray-1": "oklch(30% 0 0)",
   "gray-2": "oklch(45% 0 0)",
   "gray-3": "oklch(60% 0 0)",
   "gray-4": "oklch(80% 0 0)",
