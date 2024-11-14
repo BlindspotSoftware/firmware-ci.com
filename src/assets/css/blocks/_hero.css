@@ -1,7 +1,7 @@
 .hero {
   display: flex;
   flex-direction: column-reverse;
-  padding-block: var(--space-m) var(--space-xl);
+  padding-block: var(--space-l) var(--space-2xl);
   gap: var(--space-l);
 
   @media (--xl) {
@@ -11,7 +11,7 @@
   }
 
   /* Hide initially for fade-up animation, only when JS is enabled with GSAP for the animation */
-  :where(& > [data-stagger]) {
+  :where(& [data-stagger]) {
     @media (scripting) {
       opacity: 0;
     }

@@ -14,6 +14,8 @@ export const fontSize = {
   "2xl": interpolate({ min: 24, max: 32 }),
   "3xl": interpolate({ min: 36, max: 48 }),
   "4xl": interpolate({ min: 40, max: 72 }),
+  // Special scale
+  "3xl-4xl": interpolate({ min: 36, max: 72 }),
 };
 
 /**

@@ -7,39 +7,48 @@
 .facts {
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--space-l);
-  justify-content: center;
+  gap: var(--space-l) var(--space-s);
+  justify-content: space-evenly;
 }
 
 .fact {
-  line-height: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--space-2xs);
+}
+
+.fact__number {
+  --top-color: #222;
+  --bottom-color: #393939;
+  display: grid;
+  align-items: center;
   justify-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  line-height: 1;
   gap: var(--space-2xs);
   text-align: center;
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-ultrabold);
-  width: min(6ch, 100%);
-  border-radius: 999px;
+  font-size: calc(var(--text-3xl) * 1.25);
+  font-weight: var(--weight-black);
+  color: white;
+  padding: 0.25em 0.35em;
+  border-radius: 0.75rem;
+  background-image: linear-gradient(
+    to bottom,
+    var(--top-color),
+    var(--top-color) calc(50% - 1px),
+    black calc(50% - 1px),
+    black,
+    var(--bottom-color) calc(50% + 1px),
+    var(--bottom-color)
+  );
 
-  @media (--lg) {
-    font-size: var(--text-4xl);
-  }
-
-  /* Start animation immediately if JS is disabled */
-  @media (scripting: none) {
-    animation: count-up 1.5s var(--ease-out-cubic) both;
-    counter-reset: num var(--num);
-  }
-
-  /* Start animation when in view, toggled via JS */
-  @media (scripting) {
-    &.is-in-view {
-      animation: count-up 1.5s var(--ease-out-cubic) both;
-      counter-reset: num var(--num);
-    }
+  &::before,
+  &::after {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
 
   &::before {
@@ -50,11 +59,32 @@
       visibility: hidden;
     }
   }
+
+  &::after {
+    content: attr(data-count-to);
+    opacity: 0;
+    padding-inline: 0.3ch;
+  }
+
+  /* Start animation immediately if JS is disabled */
+  @media (scripting: none) {
+    animation: count-up 1.5s var(--ease-out-cubic) both;
+    counter-reset: num var(--num);
+  }
+
+  /* Start animation when in view, toggled via JS */
+  @media (scripting) {
+    .is-in-view & {
+      animation: count-up 1.5s var(--ease-out-cubic) both;
+      counter-reset: num var(--num);
+    }
+  }
 }
 
 .fact__label {
-  font-size: var(--text-lg);
+  /* font-size: var(--text-md); */
   line-height: 1.2;
+  font-weight: var(--weight-bold);
 }
 
 @keyframes count-up {

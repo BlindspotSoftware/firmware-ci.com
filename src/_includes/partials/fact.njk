@@ -1,4 +1,5 @@
-<p class="fact" style="--count-to: {{ fact.number }}; --length: {{ fact.number | length }}">
+<p class="fact">
+  <span aria-hidden data-count-to="{{ fact.number }}" class="fact__number" style="--count-to: {{ fact.number }}; --length: {{ fact.number | length }}"></span>
   <span class="fact__label" aria-label="{{ fact.number }} {{ fact.label }}">
     {{ fact.label }}
   </span>
