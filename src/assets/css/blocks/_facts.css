@@ -21,7 +21,7 @@
   text-align: center;
   font-size: var(--text-3xl);
   font-weight: var(--weight-bold);
-  width: min(10ch, 100%);
+  width: min(6ch, 100%);
   border-radius: 999px;
 
   @media (--lg) {

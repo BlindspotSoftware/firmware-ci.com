@@ -5,26 +5,29 @@
   background-color: var(--color-gray-1);
 }
 
-.footer__shape {
-  color: #484848;
-  height: auto;
-  width: 100%;
-  pointer-events: none;
-}
-
 .footer__content {
   color: var(--color-gray-5);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-xl-2xl);
+  padding-block: var(--space-l-xl);
 
   @media (--sm) {
+    padding-block: var(--space-m-l) var(--space-s-m);
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
     gap: 0;
   }
+}
+
+.footer__shape {
+  color: #484848;
+  height: auto;
+  width: 100%;
+  pointer-events: none;
+  max-width: 40rem;
 }
 
 .footer__links {

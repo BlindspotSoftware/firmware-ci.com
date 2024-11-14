@@ -29,7 +29,7 @@
 .hero__description {
   text-align: center;
   font-size: var(--text-lg);
-  max-width: 25ch;
+  max-width: 35ch;
   text-wrap: pretty;
 }
 

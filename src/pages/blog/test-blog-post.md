@@ -1,6 +1,5 @@
 ---
 layout: "layouts/blog.njk"
-
 date: "2024-10-22"
 title: "Test blog post"
 author: "Jens"
