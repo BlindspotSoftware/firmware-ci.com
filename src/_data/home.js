@@ -5,6 +5,16 @@ export default {
       text: "Run your firmware test fully automated and get the reports back into your development environment.",
       image: "screenshot.avif",
       bg: "white",
+      links: [
+        {
+          label: "Internal link",
+          url: "/docs",
+        },
+        {
+          label: "External",
+          url: "https://google.com",
+        },
+      ],
     },
     {
       headline: "Integratable",

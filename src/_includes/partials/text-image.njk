@@ -3,6 +3,20 @@
     <div class="text-image__copy">
       <h2 class="text-2xl lg:text-3xl weight-ultrabold">{{ section.headline }}</h2>
       <p class="lg:text-md text-gray-2">{{ section.text }}</p>
+
+      {%- if section.links -%}
+        <div class="cluster pt-xs" style="--cluster-gap: var(--space-2xs)">
+          {%- for link in section.links -%}
+            <a 
+              href="{{ link.url }}"
+              class="button {{ 'button--primary' if loop.index0 === 0 else 'button--secondary' }}"
+              {{ "rel='noopener noreferrer' target='_blank'" | safe if link.url.startsWith('http')  }}
+            >
+              {{ link.label }}
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
 
     <img eleventy:widths="600" src="/assets/images/{{ section.image }}" alt="" />
