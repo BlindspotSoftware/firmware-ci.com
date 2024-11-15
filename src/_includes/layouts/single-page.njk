@@ -1,0 +1,22 @@
+---
+permalink: /{{ page.fileSlug | slugify }}/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <article class="stack-xl">
+    <header >
+      <div class="wrapper" style="--wrapper-max: 70rem;">
+
+        <h1 class="text-4xl leading-tight weight-ultrabold" style="letter-spacing: -0.025em; text-wrap: balance; padding-top: 1em;">
+          {{ title }}
+        </h1>
+      </div>
+    </header>
+
+    <div class="prose wrapper">
+      {{ content | markdown | safe }}
+    </div>
+  </article>
+{% endblock %}
