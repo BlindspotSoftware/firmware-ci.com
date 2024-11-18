@@ -1,6 +1,4 @@
 .text-image {
-  /* position: relative; */
-
   &.bg-white + &.bg-white,
   &:not(.bg-white) + &:not(.bg-white) {
     padding-top: 0;
@@ -33,7 +31,7 @@
     line-height: 1.1;
     text-wrap: balance;
     max-width: 15ch;
-    border-bottom: 5px solid currentColor;
+    border-bottom: 3px solid currentColor;
     padding-bottom: 0.2em;
     margin-bottom: var(--space-2xs);
   }
@@ -56,7 +54,7 @@
 
   @media (--lg) {
     align-self: flex-start;
-    padding: var(--space-s-m);
+    padding: var(--space-m-l);
     background-color: white;
     margin-top: 3rem;
     margin-right: -5rem;
