@@ -40,6 +40,8 @@ export default {
     "textAlign",
     "padding",
     "margin",
+    "textTransform",
+    "letterSpacing",
   ],
   blocklist: ["container"],
   experimental: {

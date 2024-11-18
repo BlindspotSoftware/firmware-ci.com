@@ -18,7 +18,7 @@ facts.forEach((fact) => factObserver.observe(fact));
 const devicesIntegratedFact = document.querySelector(
   "[data-fact='devices-integrated']"
 );
-const testRunsFact = document.querySelector("[data-fact='test-runs']");
+const testRunsFact = document.querySelector("[data-fact='tests-run']");
 const hoursSavedFact = document.querySelector("[data-fact='hours-saved']");
 
 let newTestRuns = +testRunsFact.dataset.countTo;

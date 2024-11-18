@@ -8,8 +8,8 @@ export default {
       bg: "white",
       links: [
         {
-          label: "Internal link",
-          url: "/docs",
+          label: "test page",
+          url: "/test",
         },
         {
           label: "External",

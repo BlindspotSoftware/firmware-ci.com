@@ -87,14 +87,14 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-m);
+  gap: var(--space-l);
 
   & a {
     display: block;
   }
 
   & img {
-    height: 4.5rem;
+    height: 5.5rem;
     aspect-ratio: 2.5;
     object-fit: contain;
     width: auto;

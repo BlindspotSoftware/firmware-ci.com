@@ -8,7 +8,7 @@ export default [
   },
   {
     number: testRuns,
-    label: "Test runs",
+    label: "Tests run",
   },
   {
     number: hoursSaved,
