@@ -8,12 +8,9 @@
   position: relative;
 
   & h1 {
-    text-wrap: balance;
     font-size: var(--text-4xl);
-    line-height: var(--leading-tight);
     font-weight: var(--weight-ultrabold);
     padding-bottom: max(0.5em, 2rem);
-    letter-spacing: -0.025em;
   }
 }
 
@@ -38,12 +35,14 @@
   line-height: 1;
   border-bottom: 1px solid var(--color-gray-3);
   font-size: var(--text-md);
+  height: 2.5rem;
 }
 
 .blog__image {
   object-fit: cover;
   width: 100%;
   aspect-ratio: 16 / 9;
+  background-color: var(--color-gray-4);
 
   @media (--xl) {
     aspect-ratio: 2.5;
@@ -60,6 +59,12 @@
     align-items: center;
     width: 2.5rem;
     aspect-ratio: 1;
+    transition: color 0.2s ease;
+    color: var(--color-gray-2);
+
+    &:is(:hover, :focus-visible) {
+      color: var(--color-green);
+    }
 
     &:first-of-type {
       margin-inline-start: 0.5em;
@@ -69,6 +74,5 @@
   & svg {
     width: 1.5rem;
     aspect-ratio: 1;
-    color: var(--color-gray-2);
   }
 }

@@ -39,3 +39,9 @@ body {
     padding-block: var(--space-xl-2xl);
   }
 }
+
+h1 {
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
