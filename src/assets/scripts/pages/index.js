@@ -1,5 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "../facts";
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Hero
@@ -18,24 +20,6 @@ gsap.fromTo(
     ease: "circ.out",
   }
 );
-
-// Counters
-const counters = document.querySelectorAll(".fact");
-const counterObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (
-        entry.isIntersecting &&
-        !entry.target.classList.contains("is-in-view")
-      ) {
-        entry.target.classList.add("is-in-view");
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
-
-counters.forEach((counter) => counterObserver.observe(counter));
 
 // Text Image Parallax
 gsap.matchMedia().add("(width > 48em)", () => {

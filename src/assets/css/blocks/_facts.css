@@ -64,6 +64,7 @@
     content: attr(data-count-to);
     opacity: 0;
     padding-inline: 0.3ch;
+    pointer-events: none;
   }
 
   /* Start animation immediately if JS is disabled */
