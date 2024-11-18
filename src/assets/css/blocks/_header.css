@@ -2,12 +2,21 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(1.5rem);
   background-color: color-mix(
     in srgb,
     var(--color-bg) 50%,
     rgb(255 255 255 / 0%)
   );
+  isolation: isolate;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    backdrop-filter: blur(1.5rem);
+  }
 }
 
 .header__content {
@@ -144,6 +153,7 @@
     z-index: -1;
     padding-top: var(--space-3xl);
     background-color: var(--color-bg);
+    /* background-color: red; */
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
@@ -162,6 +172,7 @@
       display: flex;
       transition: opacity 0.3s ease, translate 0.3s var(--ease-out-cubic),
         display 0.3s var(--ease-out-cubic) allow-discrete;
+      translate: 0 0;
 
       @starting-style {
         translate: 0 1rem;
