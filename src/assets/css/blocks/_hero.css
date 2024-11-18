@@ -66,12 +66,11 @@
     }
 
     & img {
-      border-radius: 0.75rem;
       transform: rotateY(10deg);
       border: 1px solid var(--color-gray-4);
       transform: perspective(1500px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg);
       box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.08);
-      border-radius: 20px;
+      border-radius: 1.25rem;
       overflow: hidden;
     }
   }
