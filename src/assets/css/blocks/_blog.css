@@ -16,8 +16,8 @@
 
 .blog__header {
   & picture {
-    margin-inline: calc(-1 * var(--space-m));
-    max-width: calc(100% + 2 * var(--space-m));
+    margin-inline: calc(-1 * var(--space-s));
+    max-width: calc(100% + 2 * var(--space-s));
 
     @media (width >= 100rem) {
       margin-inline: auto;

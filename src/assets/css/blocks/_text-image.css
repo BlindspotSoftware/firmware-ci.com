@@ -51,8 +51,8 @@
   flex-direction: column;
   gap: var(--space-2xs);
   max-width: 45ch;
-
   border-radius: 0.75rem;
+
   @media (--lg) {
     box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
       100px 100px 80px rgba(0, 0, 0, 0.07);
