@@ -12,10 +12,10 @@ export default {
       text: "Updates",
       url: "/#updates",
     },
-    {
-      text: "Blog",
-      url: "/blog/",
-    },
+    // {
+    //   text: "Blog",
+    //   url: "/blog/",
+    // },
     {
       text: "Get in touch",
       url: "mailto:hello@blindspot.software",
