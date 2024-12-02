@@ -6,7 +6,7 @@
     scroll-margin-top: calc(var(--space-xl-2xl) + var(--header-height));
 
     @media (--3xl) {
-      margin-top: calc(-1 * var(--space-3xl-4xl));
+      margin-top: calc(-1 * var(--space-2xl));
     }
   }
 }
