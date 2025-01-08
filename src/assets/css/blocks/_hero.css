@@ -61,7 +61,6 @@
 
     @media (--xl) {
       align-self: center;
-
       max-width: 100%;
     }
 
@@ -79,6 +78,15 @@
 .hero__description {
   font-size: var(--text-lg);
   max-width: 35ch;
+  text-wrap: pretty;
+}
+
+.hero__intro {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  max-width: 45ch;
+  margin-block: var(--space-l);
+  color: var(--color-gray-7);
   text-wrap: pretty;
 }
 

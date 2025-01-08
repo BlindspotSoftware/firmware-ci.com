@@ -9,6 +9,10 @@ export default {
       url: "/#features",
     },
     {
+      text: "Pricing",
+      url: "/pricing/",
+    },
+    {
       text: "Updates",
       url: "/#updates",
     },
