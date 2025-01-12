@@ -126,12 +126,27 @@
     padding-inline: 0.75rem;
     block-size: var(--link-block-size);
 
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      height: 0.25rem;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover::after,
+    &[aria-current="page"]::after,
+    &[data-state="active"]::after {
+      transform: scaleX(1);
+    }
+
     &[aria-current="page"],
     &[data-state="active"] {
       font-weight: var(--weight-black);
-      text-decoration: underline;
-      text-underline-offset: 0.3em;
-      text-decoration-thickness: 0.25rem;
     }
 
     @media (--xl-max) {
@@ -139,10 +154,6 @@
       block-size: auto;
       padding-block: 0.5em;
     }
-  }
-
-  & li:last-child {
-    margin-left: 0.75rem;
   }
 
   @media (--xl-max) {
@@ -153,7 +164,6 @@
     z-index: -1;
     padding-top: var(--space-3xl);
     background-color: var(--color-bg);
-    /* background-color: red; */
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;

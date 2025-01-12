@@ -1,6 +1,6 @@
 export default {
   /**
-   * Returns back some attributes based on wether the
+   * Returns back some attributes based on whether the
    * link is active or a parent of an active item
    *
    * @param {String} itemUrl The link in question
@@ -10,10 +10,17 @@ export default {
   getLinkActiveState(itemUrl, pageUrl) {
     let response = "";
 
+    // Skip hash links as they're handled by JavaScript
+    if (itemUrl.includes('#')) {
+      return response;
+    }
+
+    // Handle regular pages
     if (itemUrl === pageUrl) {
       response = ' aria-current="page"';
     }
 
+    // Handle parent sections
     if (itemUrl.length > 1 && pageUrl.indexOf(itemUrl) === 0) {
       response += ' data-state="active"';
     }

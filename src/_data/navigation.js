@@ -12,10 +12,6 @@ export default {
       text: "Pricing",
       url: "/pricing/",
     },
-    {
-      text: "Updates",
-      url: "/#updates",
-    },
     // {
     //   text: "Blog",
     //   url: "/blog/",

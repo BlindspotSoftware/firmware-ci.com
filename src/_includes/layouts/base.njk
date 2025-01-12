@@ -32,6 +32,8 @@
       {% endblock %}
     </main>
 
+    {% include "partials/sections/newsletter.njk" %}
+
     <section class="bg-white py-l mt-2xl-3xl">
       <div class="wrapper stack-m">
         <h2 class="text-sm tracking-wide text-center uppercase text-gray-2">
@@ -48,8 +50,6 @@
         </ul>
       </div>
     </section>
-
-    {% include "partials/sections/newsletter.njk" %}
 
     {% include "partials/footer.njk" %}
     {% script src = "global.js" %}
