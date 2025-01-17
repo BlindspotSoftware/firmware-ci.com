@@ -32,8 +32,11 @@
       {% endblock %}
     </main>
 
-    {% include "partials/sections/newsletter.njk" %}
+    {% if not hideNewsletter %}
+      {% include "partials/sections/newsletter.njk" %}
+    {% endif %}
 
+    {% if not hideLogos %}
     <section class="bg-white py-l mt-2xl-3xl">
       <div class="wrapper stack-m">
         <h2 class="text-sm tracking-wide text-center uppercase text-gray-2">
@@ -50,6 +53,7 @@
         </ul>
       </div>
     </section>
+    {% endif %}
 
     {% include "partials/footer.njk" %}
     {% script src = "global.js" %}
