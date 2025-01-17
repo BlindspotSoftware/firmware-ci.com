@@ -17,6 +17,10 @@ export default {
     //   url: "/blog/",
     // },
     {
+      text: "Newsletter",
+      url: "/signup/",
+    },
+    {
       text: "Get in touch",
       url: "mailto:hello@blindspot.software",
     },
