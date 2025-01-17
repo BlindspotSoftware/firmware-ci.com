@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEQSY9XL5W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KEQSY9XL5W');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% include "partials/meta-info.njk" %}
+
+    {% if env.nodeenv !== 'production' %}
+      <!-- We're not in production mode -->
+      <link rel="stylesheet" href="/assets/css/global.css" />
+    {% endif %}
+
+    <style>
+      .hidden {
+        display: none !important;
+      }
+      input[type="email"] {
+        width: 100%;
+        padding: 1.25rem;
+        font-size: 1.125rem;
+        line-height: 1.5;
+        border: 2px solid var(--color-gray-3);
+        border-radius: 0.5rem;
+        background: white;
+        transition: all 0.25s ease;
+        color: var(--color-text);
+      }
+      input[type="email"]:focus {
+        border-color: var(--color-text);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(43, 178, 252, 0.15);
+      }
+      input[type="email"]::placeholder {
+        color: var(--color-gray-3);
+      }
+      input[type="checkbox"] {
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 2px solid var(--color-gray-3);
+        border-radius: 0.25rem;
+        cursor: pointer;
+        margin-top: 0.25rem;
+        appearance: none;
+        -webkit-appearance: none;
+        position: relative;
+        background: white;
+      }
+      input[type="checkbox"]:checked {
+        background-color: var(--color-text);
+        border-color: var(--color-text);
+      }
+      input[type="checkbox"]:checked::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      input[type="checkbox"]:focus {
+        border-color: var(--color-text);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(43, 178, 252, 0.15);
+      }
+      .form-label {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: var(--weight-bold);
+        margin-bottom: 0.75rem;
+        color: var(--color-text);
+      }
+      .message-panel {
+        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-weight: var(--weight-medium);
+      }
+      .message-panel--error {
+        background-color: #FEF2F2;
+        border: 1px solid #FCA5A5;
+        color: #991B1B;
+      }
+      .message-panel--success {
+        background-color: #F0FDF4;
+        border: 1px solid #86EFAC;
+        color: #166534;
+      }
+      .button {
+        padding: 1rem 2.5rem;
+        height: 3.5rem;
+        font-size: var(--text-base);
+        font-weight: var(--weight-bold);
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "partials/header.njk" %}
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+    {% script src = "global.js" %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('sib-form');
+        var errorPanel = document.getElementById('error-message');
+        var successPanel = document.getElementById('success-message');
+
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            errorPanel.classList.add('hidden');
+            successPanel.classList.add('hidden');
+
+            fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                successPanel.classList.remove('hidden');
+                form.reset();
+              } else {
+                errorPanel.classList.remove('hidden');
+              }
+            })
+            .catch(() => {
+              errorPanel.classList.remove('hidden');
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
