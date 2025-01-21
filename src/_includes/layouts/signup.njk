@@ -149,6 +149,13 @@
             .then(response => response.json())
             .then(data => {
               if (data.success) {
+                // Send Google Tag Manager event
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                  'event': 'newsletter_signup',
+                  'formId': 'sib-form',
+                  'success': true
+                });
                 successPanel.classList.remove('hidden');
                 form.reset();
               } else {
