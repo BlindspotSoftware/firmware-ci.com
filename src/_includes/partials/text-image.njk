@@ -1,7 +1,7 @@
 <section class="text-image | section {{ "bg-white" if section.bg === 'white' }}" {{ "id=" + section.id  | safe if section.id }}>
   <div class="wrapper | text-image__content {{ 'text-image__content--reverse' if reverse }}">
     <div class="text-image__copy">
-      <h2 class="text-xl lg:text-2xl weight-ultrabold">{{ section.headline }}</h2>
+      <h1 class="text-xl lg:text-2xl weight-ultrabold">{{ section.headline }}</h1>
       <p class="lg:text-md text-gray-2">{{ section.text }}</p>
 
       {% if section.painpoint %}

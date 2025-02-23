@@ -6,5 +6,5 @@ export default {
   authorName: "blindspot",
   url: process.env.NODE_ENV === "production" ? productionUrl : developmentUrl,
   metaDesc:
-    "Test your Firmware with ease and accelerate your development using the next-generation AI-driven test framework FirmwareCI.",
+    "FirmwareCI simplifies firmware testing with automated validation and CI/CD integration. Discover scalable firmware testing solutions.",
 };

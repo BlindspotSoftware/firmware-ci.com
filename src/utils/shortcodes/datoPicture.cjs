@@ -47,7 +47,6 @@ module.exports = (datoImage) => {
     sizes = "(min-width: 22em) 30vw, 100vw",
     classes = "",
     fit = "crop",
-    loading = "lazy",
     decoding = "async",
     ratio,
     emptyAlt,
