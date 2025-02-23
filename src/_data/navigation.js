@@ -12,10 +12,10 @@ export default {
       text: "Pricing",
       url: "/pricing/",
     },
-    // {
-    //   text: "Blog",
-    //   url: "/blog/",
-    // },
+    {
+      text: "Blog",
+      url: "/blog/",
+    },
     {
       text: "Newsletter",
       url: "/signup/",
