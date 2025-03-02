@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ce784ac6-7377-466d-a5bd-161c1fc8b2d2" type="text/javascript"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEQSY9XL5W"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-KEQSY9XL5W');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-M7ZW24V9');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Preconnect to required origins -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/images/hero.webp" as="image" />
+    <link rel="preload" href="/assets/fonts/montserrat-v26-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/montserrat-v26-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -29,13 +22,17 @@
       <!-- We're not in production mode -->
       <link rel="stylesheet" href="/assets/css/global.css" />
     {% endif %}
+
+    <!-- Non-blocking third party scripts -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ce784ac6-7377-466d-a5bd-161c1fc8b2d2" type="text/javascript" defer></script>
   </head>
 
   <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7ZW24V9"
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7ZW24V9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     {% include "partials/header.njk" %}
 
     <main>
@@ -58,7 +55,7 @@
           {%- for logo in home.logoRow -%}
             <li>
               <a href="{{ logo.url }}?ref=firmware-ci.com" target="_blank" rel="noopener noreferrer" aria-label="{{ logo.name }}">
-                <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" />
+                <img eleventy:widths="300" src="/assets/images/logos/{{ logo.image }}" alt="" loading="lazy" decoding="async" />
               </a>
             </li>
           {%- endfor -%}
@@ -68,6 +65,23 @@
     {% endif %}
 
     {% include "partials/footer.njk" %}
-    {% script src = "global.js" %}
+    
+    <!-- Deferred JavaScript -->
+    {% script src="global.js", defer=true %}
+
+    <!-- Analytics (deferred) -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-KEQSY9XL5W"></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KEQSY9XL5W');
+    </script>
+    <!-- Google Tag Manager -->
+    <script defer>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M7ZW24V9');</script>
   </body>
 </html>
