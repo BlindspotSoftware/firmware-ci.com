@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://firmware-ci.com
+
+# Sitemaps
+Sitemap: https://firmware-ci.com/sitemap.xml
