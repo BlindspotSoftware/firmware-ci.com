@@ -23,7 +23,7 @@ export default {
       bg: "white",
       links: [
         {
-          label: "Learn more",
+          label: "Check out our testfile reference",
           url: "https://docs.firmware-ci.com/reference/1_testfile/",
         },
       ],
