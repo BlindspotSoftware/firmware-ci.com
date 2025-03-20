@@ -4,22 +4,24 @@ import "../facts";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero
-gsap.fromTo(
-  ".hero [data-stagger]",
-  {
-    opacity: 0,
-    y: 48,
-  },
-  {
-    delay: 0.2,
-    opacity: 1,
-    y: 0,
-    stagger: 0.22,
-    duration: 0.8,
-    ease: "circ.out",
-  }
-);
+// Hero animation (desktop only)
+gsap.matchMedia().add("(min-width: 62em)", () => {
+  gsap.fromTo(
+    ".hero [data-stagger]",
+    {
+      opacity: 0,
+      y: 48,
+    },
+    {
+      delay: 0.2,
+      opacity: 1,
+      y: 0,
+      stagger: 0.22,
+      duration: 0.8,
+      ease: "circ.out",
+    }
+  );
+});
 
 // Text Image Parallax
 gsap.matchMedia().add("(width > 48em)", () => {

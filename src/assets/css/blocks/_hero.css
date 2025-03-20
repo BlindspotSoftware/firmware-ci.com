@@ -10,9 +10,9 @@
     padding-block: var(--space-2xl-3xl) var(--space-4xl);
   }
 
-  /* Hide initially for fade-up animation, only when JS is enabled with GSAP for the animation */
+  /* Hide initially for fade-up animation on desktop only, when JS is enabled with GSAP for the animation */
   :where(& [data-stagger]) {
-    @media (scripting) {
+    @media (--xl) and (scripting) {
       opacity: 0;
     }
   }
