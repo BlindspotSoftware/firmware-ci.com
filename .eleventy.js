@@ -96,8 +96,8 @@ export default function EleventyConfig(config) {
 
     // optional, attributes assigned on <img> override these values.
     defaultAttributes: {
-      loading: "lazy",
-      decoding: "async",
+      loading: "eager",
+      decoding: "auto",
     },
   });
 
