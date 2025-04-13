@@ -24,7 +24,7 @@ export default {
       links: [
         {
           label: "Check out our testfile reference",
-          url: "https://docs.firmware-ci.com/reference/1_testfile/",
+          url: "https://docs.firmware-ci.com/references/1_test_files/index.html",
         },
       ],
     },
