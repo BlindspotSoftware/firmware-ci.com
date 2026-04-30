@@ -10,13 +10,13 @@ const factObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.1 }
+  { threshold: 0.1 },
 );
 
 facts.forEach((fact) => factObserver.observe(fact));
 
 const devicesIntegratedFact = document.querySelector(
-  "[data-fact='devices-integrated']"
+  "[data-fact='devices-integrated']",
 );
 const testRunsFact = document.querySelector("[data-fact='tests-run']");
 const hoursSavedFact = document.querySelector("[data-fact='hours-saved']");
@@ -29,7 +29,7 @@ const november20th2024 = new Date("2024-11-19");
 const diffTime = Math.abs(today - november20th2024);
 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-newTestRuns += diffDays * 12;
+newTestRuns += diffDays * 56;
 
 testRunsFact.dataset.countTo = newTestRuns;
 testRunsFact.style.setProperty("--count-to", newTestRuns);

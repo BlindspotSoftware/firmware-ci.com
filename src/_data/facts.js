@@ -3,7 +3,7 @@ const hoursSaved = Math.round(testRuns * 4.7);
 
 export default [
   {
-    number: 20,
+    number: 134,
     label: "Devices integrated",
   },
   {
