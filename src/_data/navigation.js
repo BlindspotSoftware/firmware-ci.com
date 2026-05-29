@@ -17,6 +17,11 @@ export default {
       url: "/blog/",
     },
     {
+      text: "Docs",
+      url: "https://docs.firmware-ci.com",
+      external: true,
+    },
+    {
       text: "Newsletter",
       url: "/signup/",
     },

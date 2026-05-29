@@ -17,7 +17,7 @@
     <ul id="nav" class="header__items" role="list">
       {% for item in navigation.items %}
         <li>
-          <a href="{{ item.url }}" {{ helpers.getLinkActiveState(item.url, page.url) | safe }}>
+          <a href="{{ item.url }}" {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %} {{ helpers.getLinkActiveState(item.url, page.url) | safe }}>
             {{ item.text }}
           </a>
         </li>
