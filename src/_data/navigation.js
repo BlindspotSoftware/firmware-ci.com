@@ -22,12 +22,8 @@ export default {
       external: true,
     },
     {
-      text: "Newsletter",
-      url: "/signup/",
-    },
-    {
       text: "Get in touch",
-      url: "mailto:hello@blindspot.software",
+      url: "/contact/",
     },
   ],
 };

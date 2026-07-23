@@ -1,133 +1,84 @@
-@property --turn {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 1turn;
-}
-
+/* Buttons follow the FirmwareCI app: an outlined rounded-rect that fills on
+   hover, with a dark "primary" variant. No pills, no gradients — the app keeps
+   its actions quiet and monochrome, letting the status colours live in the UI. */
 .button {
-  --transition: 0.25s ease;
+  --transition: 0.2s ease;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10rem;
+  gap: 0.5rem;
+  border: 2px solid currentColor;
+  border-radius: 0.5rem;
   background: none;
   block-size: 2.75rem;
   font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
-  padding-inline: 1.25rem;
+  font-weight: 700;
+  padding-inline: 1.5rem;
   cursor: pointer;
-  border: none;
   text-decoration: none;
+  white-space: nowrap;
+  color: var(--color-text);
   transition: var(--transition) background-color, var(--transition) color,
-    var(--transition) border-color, 10s var(--ease-out-cubic) --turn;
+    var(--transition) border-color;
 
-  &:is(:hover, :focus-visible) {
+  &:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
     border-color: var(--color-text);
     background: var(--color-text);
-    color: white;
+    color: var(--color-gray-6);
   }
 
   &:is([disabled], [aria-disabled="true"]) {
-    opacity: 0.4;
+    --color-disabled: rgb(128 128 128 / 0.45);
+    border-color: var(--color-disabled);
+    color: var(--color-disabled);
+    background: none;
+    opacity: 1;
     cursor: not-allowed;
   }
 }
 
+/* Primary = the app's dark filled action (Button `dark`). */
 .button--primary {
-  background-color: var(--color-text);
-  color: white;
-}
+  color: var(--color-gray-6);
+  background-color: var(--color-gray-1);
+  border-color: var(--color-gray-1);
 
-.button--rainbow {
-  z-index: 0;
-  position: relative;
-  isolation: isolate;
-
-  &:is(:hover, :focus-visible) {
-    --turn: 5.5turn;
-
-    &::after {
-      scale: 1;
-    }
-  }
-
-  &:focus-visible {
-    outline: none !important;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    border-radius: inherit;
-    background-color: inherit;
-    pointer-events: none;
-  }
-
-  &::after {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    z-index: -2;
-    inset: -0.25rem;
-    border-radius: inherit;
-    background-image: conic-gradient(
-      in oklch from var(--turn),
-      var(--color-green),
-      var(--color-orange),
-      var(--color-red),
-      var(--color-purple),
-      var(--color-green)
-    );
-    scale: 0.8;
-    transition: 0.4s var(--ease-out-cubic) scale;
+  &:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
+    background-color: var(--color-gray-6);
+    color: var(--color-gray-1);
+    border-color: var(--color-gray-1);
   }
 }
 
+/* Secondary = the app's plain outlined default. */
 .button--secondary {
   color: var(--color-text);
-  border: 3px solid currentColor;
+  background: none;
+  border-color: currentColor;
 }
 
 .button--large {
-  block-size: 3.5rem;
-  padding-inline: 2.25rem;
+  block-size: 3.25rem;
+  padding-inline: 2rem;
+  font-size: var(--text-base);
 }
 
 .button--inverted {
   color: var(--color-gray-6);
+  border-color: var(--color-gray-6);
 
-  &:hover {
+  &:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
     border-color: var(--color-gray-6);
     background-color: var(--color-gray-6);
     color: var(--color-gray-1);
   }
 }
 
-.button--green {
-  background-color: var(--color-green);
-  color: white;
-}
-
-.button--red {
-  background-color: var(--color-red);
-  color: white;
-}
-
-.button--orange {
-  background-color: var(--color-orange);
-  color: black;
-}
-
-.button--purple {
-  background-color: var(--color-purple);
-  color: white;
-}
-
 .button--icon-only {
   aspect-ratio: 1;
   padding-inline: 0;
+  gap: 0;
 
   & svg {
     --size: 1.25rem;
@@ -135,4 +86,110 @@
     inline-size: var(--size);
     stroke-width: 3;
   }
+}
+
+/* Semantic status fills — kept for occasional emphasis; used sparingly, since
+   the app styles most actions dark/outlined. Each keeps its identity on hover
+   (a slightly deeper fill) rather than flipping to the neutral hover. */
+.button--green,
+.button--red,
+.button--orange,
+.button--purple {
+  color: white;
+  border-color: transparent;
+
+  &:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
+    color: white;
+    filter: brightness(0.92);
+  }
+}
+
+.button--green {
+  background-color: var(--color-green);
+}
+.button--red {
+  background-color: var(--color-red);
+}
+.button--orange {
+  background-color: var(--color-orange);
+  color: black;
+
+  &:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
+    color: black;
+  }
+}
+.button--purple {
+  background-color: var(--color-purple);
+}
+
+/* ── Glow CTA ───────────────────────────────────────────────────────────────
+   A dark button with an animated green→orange gradient border and a soft
+   colour glow — the hero call-to-action. */
+.button--glow {
+  border: 2px solid transparent;
+  color: #fff;
+  background:
+    linear-gradient(#171b24, #171b24) padding-box,
+    linear-gradient(115deg, var(--color-green), var(--color-orange), var(--color-purple), var(--color-green)) border-box;
+  background-size: 100% 100%, 220% 100%;
+  background-position: 0 0, 0 0;
+  animation: button-glow 6s linear infinite;
+  box-shadow:
+    0 8px 30px -8px color-mix(in oklch, var(--color-green) 55%, transparent),
+    0 4px 16px -6px color-mix(in oklch, var(--color-orange) 45%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button--glow:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
+  color: #fff;
+  transform: translateY(-2px);
+  border-color: transparent;
+  background:
+    linear-gradient(#171b24, #171b24) padding-box,
+    linear-gradient(115deg, var(--color-green), var(--color-orange), var(--color-purple), var(--color-green)) border-box;
+  background-size: 100% 100%, 220% 100%;
+  box-shadow:
+    0 14px 40px -8px color-mix(in oklch, var(--color-green) 72%, transparent),
+    0 6px 22px -6px color-mix(in oklch, var(--color-orange) 58%, transparent);
+}
+
+@keyframes button-glow {
+  to { background-position: 0 0, 220% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button--glow { animation: none; }
+}
+
+.button__arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-out-cubic);
+}
+
+.button--glow:hover .button__arrow,
+.button--glow:focus-visible .button__arrow {
+  transform: translateX(4px);
+}
+
+/* ── Ghost ───────────────────────────────────────────────────────────────────
+   Low-key, borderless; fills subtly on hover. Used for the header login. */
+.button--ghost {
+  border-color: transparent;
+  background: none;
+  color: var(--color-gray-2);
+}
+
+.button--ghost:not([disabled], [aria-disabled="true"]):is(:hover, :focus-visible) {
+  border-color: transparent;
+  background: var(--color-gray-5);
+  color: var(--color-gray-1);
+}
+
+/* Compact size, matching the FirmwareCI app's login button — a small outlined
+   rounded-rect with bold text. */
+.button--small {
+  block-size: 2.25rem;
+  padding-inline: 1.15rem;
+  font-size: 0.9375rem;
+  font-weight: 800;
 }

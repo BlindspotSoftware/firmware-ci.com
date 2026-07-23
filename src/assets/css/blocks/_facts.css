@@ -19,8 +19,10 @@
 }
 
 .fact__number {
-  --top-color: #222;
-  --bottom-color: #393939;
+  --chip-top: #222;
+  --chip-mid: #000;
+  --chip-bottom: #393939;
+  --chip-text: #fff;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -32,17 +34,17 @@
   text-align: center;
   font-size: var(--text-3xl);
   font-weight: var(--weight-black);
-  color: white;
+  color: var(--chip-text);
   padding: 0.25em;
   border-radius: 0.75rem;
   background-image: linear-gradient(
     to bottom,
-    var(--top-color),
-    var(--top-color) calc(50% - 1px),
-    black calc(50% - 1px),
-    black,
-    var(--bottom-color) calc(50% + 1px),
-    var(--bottom-color)
+    var(--chip-top),
+    var(--chip-top) calc(50% - 1px),
+    var(--chip-mid) calc(50% - 1px),
+    var(--chip-mid),
+    var(--chip-bottom) calc(50% + 1px),
+    var(--chip-bottom)
   );
 
   @media (--lg) {

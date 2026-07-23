@@ -4,7 +4,7 @@
       {% icon icon = "logo" %}
     </a>
 
-    <a href="https://app.firmware-ci.com" class="header__mobile-login-link | button button--secondary" rel="noopener noreferrer" target="_blank">
+    <a href="https://app.firmware-ci.com" class="header__mobile-login-link | button button--small" rel="noopener noreferrer" target="_blank">
         Login
     </a>
 
@@ -22,8 +22,20 @@
           </a>
         </li>
       {% endfor %}
-      <li>
-        <a href="https://app.firmware-ci.com" class="button button--secondary" rel="noopener noreferrer" target="_blank">
+      <li class="header__theme">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch between light and dark theme" title="Switch theme">
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </li>
+
+      <li class="header__login">
+        <a href="https://app.firmware-ci.com" class="button button--small" rel="noopener noreferrer" target="_blank">
           Login
         </a>
       </li>

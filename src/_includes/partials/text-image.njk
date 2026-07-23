@@ -23,6 +23,31 @@
       {%- endif -%}
     </div>
 
-    <img eleventy:widths="600" src="/assets/images/{{ section.image }}" alt="" />
+    {% if section.graphic %}
+      <div class="text-image__graphic text-image__graphic--{{ section.graphic }}" aria-hidden="true"></div>
+    {% elif section.darkImage %}
+      <img
+        class="themed-media themed-media--light"
+        eleventy:widths="600, 900, 1200, 1600"
+        eleventy:formats="avif,webp"
+        src="/assets/images/{{ section.image }}"
+        alt="{{ section.alt or '' }}"
+        sizes="(min-width: 64em) 55rem, 100vw" />
+      <img
+        class="themed-media themed-media--dark"
+        eleventy:widths="600, 900, 1200, 1600"
+        eleventy:formats="avif,webp"
+        src="/assets/images/{{ section.darkImage }}"
+        alt=""
+        aria-hidden="true"
+        sizes="(min-width: 64em) 55rem, 100vw" />
+    {% else %}
+      <img
+        eleventy:widths="600, 900, 1200, 1600"
+        eleventy:formats="avif,webp"
+        src="/assets/images/{{ section.image }}"
+        alt="{{ section.alt or '' }}"
+        sizes="(min-width: 64em) 55rem, 100vw" />
+    {% endif %}
   </div>
 </section>

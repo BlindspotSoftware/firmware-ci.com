@@ -19,6 +19,10 @@ gsap.matchMedia().add("(min-width: 62em)", () => {
       stagger: 0.22,
       duration: 0.8,
       ease: "circ.out",
+      // Drop the inline transform once the fade-up finishes so the CSS tilt on
+      // the screenshots wins — otherwise the hidden (theme-swapped) image keeps
+      // GSAP's flat transform and appears un-skewed after a light/dark toggle.
+      clearProps: "transform",
     }
   );
 });

@@ -1,0 +1,53 @@
+.contact {
+  --wrapper-max: 58rem;
+  padding-block: var(--space-2xl-3xl) var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.contact__intro {
+  max-width: 42ch;
+}
+
+.contact__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  align-items: flex-start;
+  padding: var(--space-m-l);
+}
+
+.contact__label {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--weight-bold);
+  color: var(--color-gray-2);
+}
+
+.contact__email {
+  font-size: clamp(1.05rem, 4.6vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: var(--weight-black);
+  color: var(--color-text);
+  text-decoration: none;
+  /* Only break at the explicit <wbr> after "@" (or as a last resort), so the
+     address never splits mid-word on narrow screens. */
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.contact__email:hover {
+  text-decoration: underline;
+}
+
+.contact__actions {
+  margin-top: var(--space-2xs);
+  align-items: center;
+}
+
+.contact__meta a {
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
+}

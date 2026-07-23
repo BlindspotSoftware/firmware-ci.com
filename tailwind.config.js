@@ -13,6 +13,13 @@ import { lineHeight } from "./src/assets/design-tokens/line-height";
 import { spacing } from "./src/assets/design-tokens/spacing";
 import { fontFamily } from "./src/assets/design-tokens/font-family";
 
+// Colour utilities (text-*, bg-*, border-*) reference the CSS custom properties
+// instead of baking static values, so they follow the [data-theme] flip. The
+// raw `colors` object still seeds those vars (see the var-generating plugin).
+const cssVarColors = Object.fromEntries(
+  Object.keys(colors).map((name) => [name, `var(--color-${name})`])
+);
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{html,njk}"],
@@ -21,7 +28,7 @@ export default {
    * https://tailwindcss.com/docs/theme
    */
   theme: {
-    colors: colors,
+    colors: cssVarColors,
     spacing: spacing,
     fontSize: fontSize,
     lineHeight: lineHeight,
@@ -57,6 +64,17 @@ export default {
 
       const currentConfig = config();
 
+      // Seed the CSS custom properties from the RAW token values (not from
+      // theme.colors, which now holds var() references — see cssVarColors).
+      const rawByKey = {
+        colors,
+        spacing,
+        fontSize,
+        lineHeight,
+        fontWeight,
+        fontFamily,
+      };
+
       const groups = [
         { key: "colors", prefix: "color" },
         { key: "spacing", prefix: "space" },
@@ -67,7 +85,7 @@ export default {
       ];
 
       groups.forEach(({ key, prefix }) => {
-        const group = currentConfig.theme[key];
+        const group = rawByKey[key];
         if (!group) return;
 
         // TOOD: refer to vars in utlities

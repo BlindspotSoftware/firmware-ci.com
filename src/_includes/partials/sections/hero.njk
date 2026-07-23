@@ -13,21 +13,33 @@
     <a
       data-stagger
       href="https://app.firmware-ci.com/public-orgs"
-      class="button button--green button--large button--rainbow"
+      class="button button--glow button--large"
       rel="noopener noreferrer"
       target="_blank"
     >
-      See it in action!
+      See it in action <span class="button__arrow" aria-hidden="true">→</span>
     </a>
   </div>
 
   <img
     data-stagger
+    class="themed-media themed-media--light"
     src="/assets/images/hero.webp"
     eleventy:widths="400, 600, 800, 1200, 1600"
     eleventy:formats="avif,webp"
-    alt=""
+    alt="The FirmwareCI dashboard: job requests with success rates and per-branch test history."
     sizes="(min-width: 50em) 50rem, 100vw"
     loading="eager"
     fetchpriority="high" />
+
+  <img
+    data-stagger
+    class="themed-media themed-media--dark"
+    src="/assets/images/hero-dark.webp"
+    eleventy:widths="400, 600, 800, 1200, 1600"
+    eleventy:formats="avif,webp"
+    alt=""
+    aria-hidden="true"
+    sizes="(min-width: 50em) 50rem, 100vw"
+    loading="eager" />
 </section>

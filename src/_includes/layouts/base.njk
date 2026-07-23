@@ -20,6 +20,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    {# Resolve the theme before paint so there is no flash. #}
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "dark" && t !== "light") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
     {% include "partials/meta-info.njk" %}
 
     {# When using fonts, load them via fonts.css before the critical CSS so they are rendered ASAP #}
@@ -42,10 +56,6 @@
         {{ content | safe }}
       {% endblock %}
     </main>
-
-    {% if not hideNewsletter %}
-      {% include "partials/sections/newsletter.njk" %}
-    {% endif %}
 
     {% if not hideLogos %}
     <section class="bg-white py-l mt-2xl-3xl">

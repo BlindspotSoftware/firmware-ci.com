@@ -1,0 +1,170 @@
+/* ── Dark theme ───────────────────────────────────────────────────────────
+   Mirrors the FirmwareCI app: the gray scale keeps its semantic roles
+   (gray-1 = strongest text, gray-6 = primary surface) and simply flips, so
+   every existing var(--color-gray-N) usage inverts correctly. The status hues
+   (green/orange/red/purple) are unchanged — they read on both grounds.
+
+   Applied when the visitor explicitly picks dark, OR by OS preference when they
+   haven't chosen (the no-flash script resolves one of the two into
+   [data-theme] before paint, so JS visitors always get an explicit value). */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-gray-1: oklch(95% 0 0); /* primary text / strong lines */
+  --color-gray-2: oklch(86% 0 0); /* secondary text */
+  --color-gray-3: oklch(68% 0 0); /* muted text / dividers */
+  --color-gray-4: oklch(48% 0 0); /* borders */
+  --color-gray-5: oklch(37% 0 0); /* alternate surface */
+  --color-gray-6: oklch(31% 0 0); /* primary surface (cards) */
+  --color-bg: oklch(20% 0 0); /* recessed page */
+
+  /* Shadows vanish on a dark page, so a faint hairline is what makes a card
+     read as elevated. */
+  --border-card: rgb(255 255 255 / 0.08);
+
+  /* The "white" contrast bands become an elevated dark surface. */
+  & .bg-white {
+    background-color: var(--color-gray-6);
+  }
+
+  /* The footer is a permanently dark region — re-pin the grays it uses so it
+     stays dark-with-light-text instead of inverting. */
+  & .footer {
+    --color-gray-1: oklch(22% 0 0);
+    --color-gray-4: oklch(72% 0 0);
+    --color-gray-5: oklch(90% 0 0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-gray-1: oklch(95% 0 0);
+    --color-gray-2: oklch(86% 0 0);
+    --color-gray-3: oklch(68% 0 0);
+    --color-gray-4: oklch(48% 0 0);
+    --color-gray-5: oklch(37% 0 0);
+    --color-gray-6: oklch(31% 0 0);
+    --color-bg: oklch(20% 0 0);
+    --border-card: rgb(255 255 255 / 0.08);
+
+    & .bg-white {
+      background-color: var(--color-gray-6);
+    }
+
+    & .footer {
+      --color-gray-1: oklch(22% 0 0);
+      --color-gray-4: oklch(72% 0 0);
+      --color-gray-5: oklch(90% 0 0);
+    }
+  }
+}
+
+/* Ease the flip when the visitor toggles (but not on first paint). */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Theme toggle (in the header) ─────────────────────────────────────────── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background: none;
+  color: var(--color-gray-2);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:is(:hover, :focus-visible) {
+    color: var(--color-gray-1);
+    background-color: var(--color-gray-5);
+  }
+
+  & svg {
+    inline-size: 1.35rem;
+    block-size: 1.35rem;
+  }
+
+  /* Show the destination: a moon in light (→ go dark), a sun in dark. */
+  & .theme-toggle__sun {
+    display: none;
+  }
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  & .theme-toggle__moon {
+    display: none;
+  }
+  & .theme-toggle__sun {
+    display: block;
+  }
+}
+
+/* ── Facts flip-clock chips ────────────────────────────────────────────────
+   Invert with the theme so they always pop: dark chips on the light band,
+   light chips on the dark band. */
+:root[data-theme="dark"] .fact__number {
+  --chip-top: #efefef;
+  --chip-mid: #c7c7c7;
+  --chip-bottom: #e2e2e2;
+  --chip-text: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .fact__number {
+    --chip-top: #efefef;
+    --chip-mid: #c7c7c7;
+    --chip-bottom: #e2e2e2;
+    --chip-text: #1a1a1a;
+  }
+}
+
+/* ── Elevated cards ────────────────────────────────────────────────────────
+   In dark mode the cards sit clearly lighter than the page/sections so they
+   read as raised panels rather than blending in. */
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .text-image__copy,
+:root[data-theme="dark"] .text-image.bg-white .text-image__copy {
+  background-color: oklch(40% 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card,
+  :root:not([data-theme="light"]) .text-image__copy,
+  :root:not([data-theme="light"]) .text-image.bg-white .text-image__copy {
+    background-color: oklch(40% 0 0);
+  }
+}
+
+/* ── Theme-aware screenshots ───────────────────────────────────────────────
+   Sections with a dark capture render both; show the one matching the theme.
+   The eleventy transform wraps each <img> in a <picture>, so we toggle the
+   whole <picture> via :has() to keep the hidden one out of the flex/grid flow. */
+picture:has(img.themed-media--dark) {
+  display: none;
+}
+
+:root[data-theme="dark"] picture:has(img.themed-media--light) {
+  display: none;
+}
+
+:root[data-theme="dark"] picture:has(img.themed-media--dark) {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) picture:has(img.themed-media--light) {
+    display: none;
+  }
+  :root:not([data-theme="light"]) picture:has(img.themed-media--dark) {
+    display: block;
+  }
+}
