@@ -40,6 +40,7 @@ export default {
       text: "Say goodbye to complicated and time-consuming testing setups. FirmwareCI streamlines the entire process, from configuring your test environment to running your first test. Whether you're integrating with your CI/CD pipeline or deploying on real hardware, FirmwareCI gets you up and running in minutes. No steep learning curves—just seamless testing automation.",
       painpoint: "Configuring firmware tests is often a time-intensive process, requiring manual setup of hardware, tools, and workflows.",
       image: "setup.avif",
+      darkImage: "setup-dark.avif",
       alt: "A firmware device under test on the bench, a probe attached to a running board with its status LEDs lit.",
     },
     {
@@ -55,7 +56,8 @@ export default {
       text: "There are more benefits of automated firmware testing to come: To extend your test suite, there is no need to write more test manually. FirmwareCI will learn from your test results and suggest new tests to you. Just tell FirmwareCI 'Add a CPU load test and check the power consumption' and take advantage of top trending AI technologies.",
       painpoint: "End the tedious task of manually writing and maintaining test cases.",
       image: "ai.avif",
-      alt: "A processor with glowing data pathways, representing AI-assisted test generation.",
+      darkImage: "ai-dark.avif",
+      alt: "A rack of devices under test, board after board wired into the bench and powered up.",
     },
   ],
   // Images are located at `src/assets/images/logos`
