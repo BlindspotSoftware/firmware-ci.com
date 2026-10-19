@@ -1,0 +1,1126 @@
+/* ── Hero loop ────────────────────────────────────────────────────────────────
+   The OCP booth loop as the homepage hero (markup: partials/sections/hero.njk,
+   copy: _data/heroLoop.js, player: scripts/loop.js).
+
+   The scenes are laid out on a fixed stage — 1920×1080 like the booth screen,
+   1080×1350 on phones — that is scaled to its frame with --k. So every size
+   inside .loop__stage is a stage pixel. The look comes from the FirmwareCI app:
+   gray ground, ink outlines, quarter-circle "leaf" glyphs, status colours; the
+   tokens follow the site theme so the loop works in light and dark. */
+
+.loop {
+  --ground: var(--color-gray-5);
+  --card: var(--color-gray-6);
+  --ink: var(--color-gray-1);
+  --ink-2: var(--color-gray-2);
+  --line: var(--color-gray-4);
+  --inv: var(--card); /* text on ink-filled shapes */
+  --inv-2: color-mix(in oklch, var(--card) 78%, var(--ink));
+  --queued: var(--color-purple);
+  --running: var(--color-orange);
+  --failed: var(--color-red);
+  --done: var(--color-green);
+  --code-bg: oklch(27% 0 0);
+  --mono: ui-monospace, "JetBrains Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  position: relative;
+  inline-size: var(--loop-width, 100%);
+  margin-inline: auto;
+  scroll-margin-top: calc(var(--header-height) + var(--space-s));
+}
+
+:root[data-theme="dark"] .loop {
+  --ground: oklch(24% 0 0);
+  --code-bg: oklch(15% 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .loop {
+    --ground: oklch(24% 0 0);
+    --code-bg: oklch(15% 0 0);
+  }
+}
+
+.loop__defs {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+  overflow: hidden;
+}
+
+.loop__frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-gray-4);
+  border-radius: 1.25rem;
+  background-color: var(--ground);
+  box-shadow: 24px 20px 60px -14px rgb(0 0 0 / 0.22);
+
+  @media (--lg-max) {
+    aspect-ratio: 4 / 5;
+  }
+
+  @media (scripting: none) {
+    display: none;
+  }
+}
+
+.loop__noscript {
+  inline-size: 100%;
+  block-size: auto;
+  border: 1px solid var(--color-gray-4);
+  border-radius: 1.25rem;
+}
+
+.loop__stage {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 1920px;
+  block-size: 1080px;
+  transform: scale(var(--k, 0.5));
+  transform-origin: 0 0;
+  overflow: hidden;
+  background-color: var(--ground);
+  color: var(--ink);
+  font-family: "Montserrat", system-ui, sans-serif;
+  line-height: normal;
+  opacity: 0; /* until it has been scaled to the frame */
+
+  @media (--lg-max) {
+    inline-size: 1080px;
+    block-size: 1350px;
+  }
+}
+
+.loop.is-scaled .loop__stage {
+  opacity: 1;
+}
+
+/* Paused (by the visitor, or while off screen / in a hidden tab): freeze every
+   animation on the stage. */
+.loop.is-paused .loop__stage *,
+.loop.is-paused .loop__stage *::before,
+.loop.is-paused .loop__stage *::after {
+  animation-play-state: paused !important;
+}
+
+.loop .loop__stage :where(p, ol, ul, pre) {
+  margin: 0;
+}
+
+.loop .loop__stage :where(ol, ul) {
+  padding: 0;
+  list-style: none;
+}
+
+/* ── ambient leaves ─────────────────────────────────────────────────────── */
+
+.loop__leaf {
+  position: absolute;
+  inset-inline-start: var(--x);
+  inset-block-start: var(--y);
+  inline-size: var(--s);
+  block-size: var(--s);
+  border: 5px solid var(--ink);
+  border-radius: 0 100% 0 0;
+  background: var(--c, transparent);
+  opacity: 0.09;
+  animation: loop-drift 26s ease-in-out infinite alternate;
+
+  @media (--lg-max) {
+    inset-inline-start: var(--px);
+    inset-block-start: var(--py);
+  }
+}
+
+.loop__leaf--r1 {
+  border-radius: 100% 0 0 0;
+}
+.loop__leaf--r2 {
+  border-radius: 0 0 100% 0;
+}
+.loop__leaf--r3 {
+  border-radius: 0 0 0 100%;
+}
+
+@keyframes loop-drift {
+  from {
+    transform: translate(0, 0) rotate(0);
+  }
+  to {
+    transform: translate(var(--dx, 30px), var(--dy, -24px)) rotate(var(--rot, 4deg));
+  }
+}
+
+/* ── chrome: brand top left, controls bottom left, call to action bottom right ── */
+
+.loop__brand {
+  position: absolute;
+  inset-inline-start: 96px;
+  inset-block-start: 72px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  & svg {
+    inline-size: 118px;
+    block-size: 72px;
+    color: var(--ink);
+  }
+
+  @media (--lg-max) {
+    inset-inline-start: 64px;
+    inset-block-start: 64px;
+    gap: 22px;
+
+    & svg {
+      inline-size: 100px;
+      block-size: 61px;
+    }
+  }
+}
+
+.loop__brand-name {
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+
+  @media (--lg-max) {
+    font-size: 46px;
+  }
+}
+
+.loop__brand-line {
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--ink-2);
+
+  @media (--lg-max) {
+    display: none;
+  }
+}
+
+.loop__controls {
+  position: absolute;
+  inset-inline-start: 96px;
+  inset-block-end: 66px;
+  z-index: 6;
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+
+  @media (--lg-max) {
+    inset-inline-start: 64px;
+    inset-block-end: 60px;
+    gap: 16px;
+  }
+}
+
+.loop__dots {
+  display: flex;
+  gap: 10px;
+}
+
+.loop__dot,
+.loop__toggle {
+  --size: 56px;
+  position: relative;
+  display: block;
+  inline-size: var(--size);
+  block-size: var(--size);
+  padding: 0;
+  border: 4px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.2s var(--ease);
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  /* !important: the site-wide :focus-visible outline is unlayered and would
+     otherwise win — and it is far too thin at stage scale. */
+  &:focus-visible {
+    outline: 6px solid var(--running) !important;
+    outline-offset: 6px !important;
+  }
+
+  @media (--lg-max) {
+    --size: 72px;
+  }
+}
+
+.loop__dot {
+  overflow: hidden;
+  border-radius: 0 var(--size) 0 0;
+
+  & i {
+    position: absolute;
+    inset: 0;
+    background: var(--running);
+    transform: scaleX(var(--p, 0));
+    transform-origin: left;
+  }
+
+  &:not(.is-running) i {
+    display: none;
+  }
+
+  &.is-done {
+    background: var(--done);
+  }
+
+  &.is-queued {
+    background: var(--queued);
+  }
+}
+
+.loop__toggle {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+/* Pause bars while playing, a play triangle once the visitor has paused. */
+.loop__toggle-icon {
+  inline-size: 20px;
+  block-size: 24px;
+  border-inline: 7px solid currentColor;
+
+  .loop.is-user-paused & {
+    inline-size: 22px;
+    margin-inline-start: 6px;
+    border: 0;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+}
+
+/* The call to action lives in real pixels above the scaled stage, so it stays
+   crisp and easy to hit; on phones it sits below the loop. */
+.loop__cta {
+  position: absolute;
+  inset-inline-end: calc(96px * var(--k, 0.5));
+  inset-block-end: calc(60px * var(--k, 0.5));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: calc(26px * var(--k, 0.5));
+
+  & .button {
+    block-size: max(2.75rem, calc(92px * var(--k, 0.5)));
+    padding-inline: max(1.25rem, calc(46px * var(--k, 0.5)));
+    border-radius: max(0.5rem, calc(16px * var(--k, 0.5)));
+    font-size: max(0.95rem, calc(32px * var(--k, 0.5)));
+  }
+
+  @media (--lg-max) {
+    position: static;
+    justify-content: center;
+    margin-block-start: var(--space-s);
+
+    & .button {
+      block-size: 3.25rem;
+      padding-inline: 2rem;
+      border-radius: 0.5rem;
+      font-size: var(--text-base);
+    }
+  }
+}
+
+.loop__blindspot {
+  inline-size: calc(96px * var(--k, 0.5));
+  block-size: calc(78px * var(--k, 0.5));
+  color: var(--ink);
+
+  @media (--lg-max) {
+    display: none;
+  }
+}
+
+/* ── scenes ─────────────────────────────────────────────────────────────── */
+
+.loop__scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 44px;
+  padding: 200px 150px 170px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s var(--ease), visibility 0s 0.7s;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s var(--ease);
+  }
+
+  @media (--lg-max) {
+    gap: 40px;
+    padding: 200px 64px 190px;
+  }
+}
+
+/* Elements fade up one after another (--d); once a scene has faded out they
+   snap back, ready for the next round. */
+.loop .in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0s 0.7s, transform 0s 0.7s;
+}
+
+.loop .is-active .in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease) var(--d, 0ms), transform 0.9s var(--ease) var(--d, 0ms);
+}
+
+.loop .ttl {
+  max-inline-size: 1620px;
+  font-weight: 900;
+  font-size: 136px;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+
+  &.m {
+    font-size: 96px;
+  }
+
+  @media (--lg-max) {
+    max-inline-size: none;
+    font-size: 104px;
+
+    &.m {
+      font-size: 80px;
+    }
+  }
+}
+
+.loop .sub {
+  max-inline-size: 1500px;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.25;
+  color: var(--ink-2);
+  text-wrap: balance;
+
+  & b {
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  @media (--lg-max) {
+    font-size: 50px;
+  }
+}
+
+.loop .sub--hook {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--ink);
+
+  @media (--lg-max) {
+    font-size: 64px;
+  }
+}
+
+.loop .sub--brand {
+  font-size: 60px;
+
+  @media (--lg-max) {
+    font-size: 52px;
+  }
+}
+
+.loop .sub--small {
+  max-inline-size: 1620px;
+  font-size: 44px;
+
+  @media (--lg-max) {
+    font-size: 42px;
+  }
+}
+
+.loop .sub--repo {
+  font-size: 42px;
+  color: var(--ink);
+
+  @media (--lg-max) {
+    font-size: 36px;
+  }
+}
+
+.loop .mono {
+  font-family: var(--mono);
+}
+
+/* hook */
+.loop .pill {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 24px;
+  padding: 22px 44px 22px 26px;
+  border: 5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 46px;
+  font-weight: 800;
+
+  & .lf {
+    inline-size: 58px;
+    block-size: 58px;
+    border: 5px solid var(--ink);
+    border-radius: 0 58px 0 0;
+    background: var(--done);
+  }
+}
+
+.loop .cursor {
+  display: inline-block;
+  inline-size: 0.5em;
+  block-size: 0.9em;
+  margin-inline-start: 0.15em;
+  background: var(--ink);
+  vertical-align: -0.08em;
+  animation: loop-blink 1s steps(1) infinite;
+}
+
+@keyframes loop-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* strike */
+.loop .strikes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.loop .strike {
+  position: relative;
+  align-self: flex-start;
+  font-size: 84px;
+  font-weight: 800;
+  line-height: 1.1;
+  transition: opacity 0s 0.7s, transform 0s 0.7s, color 0s 0.7s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: -12px;
+    inset-block-start: 54%;
+    block-size: 12px;
+    border-radius: 6px;
+    background: var(--failed);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0s 0.7s;
+  }
+
+  @media (--lg-max) {
+    font-size: 72px;
+  }
+}
+
+.loop .is-active .strike {
+  color: var(--ink-2);
+  transition: opacity 0.7s var(--ease) var(--d, 0ms), transform 0.9s var(--ease) var(--d, 0ms),
+    color 0.4s var(--s, 0ms);
+
+  &::after {
+    transform: scaleX(1);
+    transition: transform 0.5s var(--ease) var(--s, 0ms);
+  }
+}
+
+/* brand */
+.loop .brandrow {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+
+  & svg {
+    flex: none;
+    inline-size: 300px;
+    block-size: 183px;
+    color: var(--ink);
+  }
+
+  & .ttl {
+    font-size: 170px;
+  }
+
+  @media (--lg-max) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+
+    & svg {
+      inline-size: 220px;
+      block-size: 134px;
+    }
+
+    & .ttl {
+      font-size: 150px;
+    }
+  }
+}
+
+.loop .leafrow {
+  display: flex;
+  gap: 8px;
+
+  & i {
+    inline-size: 70px;
+    block-size: 70px;
+    border: 5px solid var(--ink);
+    border-radius: 0 70px 0 0;
+    background: var(--c);
+    transform: scale(0);
+    transition: transform 0s 0.7s;
+  }
+}
+
+.loop .is-active .leafrow i {
+  transform: scale(1);
+  transition: transform 0.5s var(--ease) var(--d);
+}
+
+/* pipeline */
+.loop .pipe {
+  display: flex;
+  align-items: stretch;
+
+  @media (--lg-max) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 56px;
+  }
+}
+
+.loop .node {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+
+  & .box {
+    inline-size: 150px;
+    block-size: 150px;
+    border: 6px solid var(--ink);
+    border-radius: 0 150px 0 0;
+    background: var(--card);
+    transition: background-color 0.35s;
+  }
+
+  & .lb {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  & .sm {
+    margin-top: -10px;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-align: center;
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 72px;
+    inset-inline: calc(50% + 90px) calc(-50% + 90px);
+    block-size: 6px;
+    border-radius: 3px;
+    background: var(--line);
+  }
+
+  &.is-queued .box {
+    background: var(--queued);
+  }
+
+  &.is-running .box {
+    background: var(--running);
+    animation: loop-breathe 0.8s ease-in-out infinite alternate;
+  }
+
+  &.is-done .box {
+    background: var(--done);
+  }
+
+  &.is-done:not(:last-child)::after {
+    background: var(--ink);
+  }
+
+  @media (--lg-max) {
+    & .box {
+      inline-size: 140px;
+      block-size: 140px;
+      border-radius: 0 140px 0 0;
+    }
+
+    & .lb {
+      font-size: 42px;
+    }
+
+    & .sm {
+      font-size: 30px;
+    }
+
+    &:not(:last-child)::after {
+      inset-block-start: 67px;
+      inset-inline: calc(50% + 84px) calc(-50% + 84px);
+    }
+
+    &:nth-child(3n)::after {
+      display: none;
+    }
+  }
+}
+
+@keyframes loop-breathe {
+  to {
+    transform: scale(1.06);
+  }
+}
+
+/* tags */
+.loop .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  max-inline-size: 1640px;
+
+  @media (--lg-max) {
+    gap: 18px;
+  }
+}
+
+.loop .tag {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 34px 18px 20px;
+  border: 5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 42px;
+  font-weight: 700;
+
+  & i {
+    flex: none;
+    inline-size: 40px;
+    block-size: 40px;
+    border: 4px solid var(--ink);
+    border-radius: 0 40px 0 0;
+    background: var(--queued);
+  }
+
+  @media (--lg-max) {
+    gap: 14px;
+    padding: 14px 28px 14px 16px;
+    font-size: 38px;
+
+    & i {
+      inline-size: 36px;
+      block-size: 36px;
+    }
+  }
+}
+
+.loop .is-active .tag i {
+  animation: loop-to-done 0.01s linear forwards;
+  animation-delay: calc(var(--d) + 900ms);
+}
+
+@keyframes loop-to-done {
+  to {
+    background: var(--done);
+  }
+}
+
+/* tests as code */
+.loop .split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 80px;
+
+  @media (--lg-max) {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.loop .code {
+  overflow: hidden;
+  padding: 30px 44px;
+  border-radius: 0 120px 0 0;
+  background: var(--code-bg);
+  color: #eaeaea;
+  font-size: 23px;
+  line-height: 1.38;
+  white-space: pre;
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.4);
+
+  & .ln {
+    display: block;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0s 0.7s;
+  }
+
+  & .k {
+    color: #f2b27a;
+  }
+
+  & .s {
+    color: #8fd9a8;
+  }
+
+  & .c {
+    color: #9a9a9a;
+  }
+
+  & .file {
+    display: block;
+    margin-bottom: 10px;
+    color: #9a9a9a;
+    font-size: 21px;
+  }
+
+  @media (--lg-max) {
+    padding: 26px 34px;
+    border-radius: 0 90px 0 0;
+    font-size: 22px;
+  }
+}
+
+.loop .is-active .code .ln {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.45s steps(22) var(--d);
+}
+
+.loop .chips {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  @media (--lg-max) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+}
+
+.loop .chip {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 20px 30px;
+  border: 5px solid var(--ink);
+  border-radius: 0 60px 0 0;
+  background: var(--card);
+  font-size: 48px;
+  font-weight: 800;
+
+  & i {
+    flex: none;
+    inline-size: 46px;
+    block-size: 46px;
+    border: 4px solid var(--ink);
+    border-radius: 0 46px 0 0;
+    background: var(--done);
+  }
+
+  & small {
+    margin-inline-start: auto;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  @media (--lg-max) {
+    gap: 18px;
+    padding: 16px 24px;
+    font-size: 40px;
+
+    & small {
+      display: none;
+    }
+  }
+}
+
+/* diagrams (labs, modules) */
+.loop svg text {
+  fill: var(--ink);
+  font-family: inherit;
+}
+
+.loop .fill-card {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: 6;
+}
+
+.loop .fill-ink {
+  fill: var(--ink);
+}
+
+.loop .fill-inv {
+  fill: var(--inv);
+}
+
+.loop .fill-inv-2 {
+  fill: var(--inv-2);
+}
+
+.loop :is(.labs, .mods) svg {
+  overflow: visible;
+}
+
+.loop .labs__wide {
+  inline-size: 1620px;
+  block-size: 420px;
+}
+
+.loop .mods__wide {
+  inline-size: 1620px;
+  block-size: 400px;
+}
+
+.loop :is(.labs__tall, .mods__tall) {
+  display: none;
+}
+
+@media (--lg-max) {
+  .loop :is(.labs__wide, .mods__wide) {
+    display: none;
+  }
+
+  .loop :is(.labs__tall, .mods__tall) {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+}
+
+.loop .wire {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 6;
+  stroke-dasharray: 14 14;
+  stroke-dashoffset: 588;
+  opacity: 0;
+}
+
+.loop .is-active .wire {
+  opacity: 1;
+  animation: loop-flow 1.2s linear infinite;
+  animation-delay: var(--d);
+}
+
+@keyframes loop-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.loop .lnk {
+  stroke: var(--ink);
+  stroke-width: 6;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0s 0.7s;
+}
+
+.loop .is-active .lnk {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.8s var(--ease) var(--d);
+}
+
+/* ask your AI */
+.loop .chat {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  max-inline-size: 1500px;
+
+  @media (--lg-max) {
+    gap: 28px;
+  }
+}
+
+.loop .bubble {
+  align-self: flex-end;
+  max-inline-size: 1100px;
+  padding: 30px 44px;
+  border-radius: 60px 60px 0 60px;
+  background: var(--ink);
+  color: var(--inv);
+  font-size: 46px;
+  font-weight: 700;
+
+  @media (--lg-max) {
+    padding: 26px 38px;
+    font-size: 42px;
+  }
+}
+
+.loop .answer {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-inline-size: 1320px;
+  padding: 36px 48px;
+  border: 5px solid var(--ink);
+  border-radius: 0 90px 0 0;
+  background: var(--card);
+
+  & .who {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink-2);
+  }
+
+  & .sev {
+    padding: 6px 20px;
+    border-radius: 999px;
+    background: var(--running);
+    color: #222;
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  & .txt {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    & span {
+      color: var(--ink-2);
+      font-weight: 500;
+    }
+  }
+
+  @media (--lg-max) {
+    padding: 30px 38px;
+
+    & :is(.who, .sev) {
+      font-size: 30px;
+    }
+
+    & .txt {
+      font-size: 40px;
+    }
+  }
+}
+
+/* close */
+.loop .closerow {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+
+  & svg.logo {
+    flex: none;
+    inline-size: 260px;
+    block-size: 158px;
+    color: var(--ink);
+  }
+
+  & .ttl {
+    font-size: 150px;
+  }
+
+  @media (--lg-max) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+
+    & svg.logo {
+      inline-size: 200px;
+      block-size: 122px;
+    }
+
+    & .ttl {
+      font-size: 120px;
+    }
+  }
+}
+
+.loop .closerow--links {
+  @media (--lg-max) {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+/* The booth's arrow pointed down at the demo station; here it points at the
+   button: bottom right on the stage, straight below the loop on phones. */
+.loop .arrow {
+  display: inline-block;
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 1;
+  transform: rotate(-45deg);
+
+  & > span {
+    display: inline-block;
+    animation: loop-nudge 1.4s ease-in-out infinite;
+  }
+
+  @media (--lg-max) {
+    font-size: 130px;
+    transform: none;
+  }
+}
+
+@keyframes loop-nudge {
+  50% {
+    transform: translateY(24px);
+  }
+}
+
+.loop .urls {
+  display: flex;
+  gap: 60px;
+  font-size: 44px;
+  font-weight: 700;
+
+  & span {
+    padding-bottom: 6px;
+    border-bottom: 6px solid var(--done);
+  }
+
+  @media (--lg-max) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    font-size: 38px;
+  }
+}

@@ -1,92 +1,48 @@
+/* Hero: the booth loop (see _loop.css) with the core message below it.
+   Loop and copy share one width: the loop is sized so that, on a laptop, it
+   and the headline below fit the first screen together. */
 .hero {
-  display: flex;
-  flex-direction: column-reverse;
-  padding-block: var(--space-l) var(--space-2xl);
-  gap: var(--space-l);
+  --loop-width: min(100%, max(40rem, (100svh - var(--header-height) - 12rem) * 16 / 9));
+
+  padding-block: var(--space-s-m) var(--space-xl);
+
+  @media (--lg-max) {
+    --loop-width: 100%;
+  }
+}
+
+.hero__copy {
+  display: grid;
+  gap: var(--space-2xs) var(--space-l);
+  inline-size: var(--loop-width);
+  margin: var(--space-m) auto 0;
 
   @media (--xl) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-block: var(--space-2xl-3xl) var(--space-4xl);
-  }
-
-  /* Hide initially for fade-up animation on desktop only, when JS is enabled with GSAP for the animation */
-  :where(& [data-stagger]) {
-    @media (--xl) and (scripting) {
-      opacity: 0;
-    }
-  }
-
-  > div {
-    margin-top: -3.5rem;
-    position: relative;
-    z-index: 10;
-
-    @media (--sm) {
-      margin-top: -6rem;
-    }
-
-    @media (--lg) {
-      margin-top: -10rem;
-    }
-
-    @media (--xl) {
-      margin-top: 0;
-    }
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
   }
 
   & h1 {
-    letter-spacing: -0.04em;
-    line-height: 1.15;
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-ultrabold);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-black);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-wrap: balance;
 
     @media (--2xl) {
-      font-size: var(--text-4xl);
-    }
-  }
-
-  > picture {
-    margin-right: 1rem;
-    align-self: end;
-    max-width: 80%;
-
-    @media (--sm) {
-      max-width: 62%;
+      font-size: calc(var(--text-2xl) * 1.2);
     }
 
-    @media (--lg) {
-      margin-top: -2rem;
-    }
-
-    @media (--xl) {
-      align-self: center;
-      max-width: 100%;
-    }
-
-    & img {
-      transform: rotateY(10deg);
-      border: 1px solid var(--color-gray-4);
-      transform: perspective(1500px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg);
-      box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.08);
-      border-radius: 1.25rem;
-      overflow: hidden;
+    & span {
+      display: inline-block;
     }
   }
 }
 
 .hero__description {
-  font-size: var(--text-lg);
-  max-width: 35ch;
-  text-wrap: pretty;
-}
-
-.hero__intro {
-  font-size: var(--text-base);
-  line-height: 1.6;
-  max-width: 45ch;
-  margin-block: var(--space-l);
-  color: var(--color-gray-7);
+  font-size: var(--text-md);
+  line-height: 1.55;
+  color: var(--color-gray-2);
   text-wrap: pretty;
 }
 
