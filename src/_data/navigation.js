@@ -9,6 +9,11 @@ export default {
       url: "/#features",
     },
     {
+      text: "Public Orgs",
+      url: "https://app.firmware-ci.com/public-orgs",
+      external: true,
+    },
+    {
       text: "Pricing",
       url: "/pricing/",
     },
