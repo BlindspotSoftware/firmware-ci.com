@@ -4,8 +4,8 @@ import "../facts";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Text Image Parallax
-gsap.matchMedia().add("(width > 48em)", () => {
+// Text Image Parallax, while copy and screenshot sit side by side (--xl in _text-image.css)
+gsap.matchMedia().add("(width > 62em)", () => {
   gsap.utils.toArray(".text-image__copy").forEach((element) => {
     gsap.fromTo(
       element,

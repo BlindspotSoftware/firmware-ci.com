@@ -1,8 +1,25 @@
-<section class="text-image | section {{ "bg-white" if section.bg === 'white' }}" {{ "id=" + section.id  | safe if section.id }}>
+{#
+  A feature section: the copy in a card next to a screenshot or a visual.
+  Data: home.featureSections (see _data/home.js). `text`, `points` and the
+  callout text may contain inline HTML (links to other sections, <b>, <code>).
+#}
+<section class="text-image | section {{ "bg-white" if section.bg === 'white' }}"{% if section.id %} id="{{ section.id }}"{% endif %}>
   <div class="wrapper | text-image__content {{ 'text-image__content--reverse' if reverse }}">
     <div class="text-image__copy">
       <h1 class="text-xl lg:text-2xl weight-ultrabold">{{ section.headline }}</h1>
-      <p class="lg:text-md text-gray-2">{{ section.text }}</p>
+      <p class="lg:text-md text-gray-2">{{ section.text | safe }}</p>
+
+      {%- if section.points %}
+        <ul class="text-image__points" role="list">
+          {%- for point in section.points %}
+          <li>{{ point | safe }}</li>
+          {%- endfor %}
+        </ul>
+      {%- endif %}
+
+      {%- if section.callout %}
+        <p class="text-image__callout"><strong>{{ section.callout.title }}</strong> {{ section.callout.text | safe }}</p>
+      {%- endif %}
 
       {% if section.painpoint %}
         <p class="text-image__painpoint">{{ section.painpoint }}</p>
@@ -11,7 +28,7 @@
       {%- if section.links -%}
         <div class="cluster pt-xs" style="--cluster-gap: var(--space-2xs)">
           {%- for link in section.links -%}
-            <a 
+            <a
               href="{{ link.url }}"
               class="button {{ 'button--primary' if loop.index0 === 0 else 'button--secondary' }}"
               {{ "rel='noopener noreferrer' target='_blank'" | safe if link.url.startsWith('http')  }}
@@ -23,7 +40,9 @@
       {%- endif -%}
     </div>
 
-    {% if section.graphic %}
+    {% if section.visual %}
+      {% include "partials/visuals/" + section.visual + ".njk" %}
+    {% elif section.graphic %}
       <div class="text-image__graphic text-image__graphic--{{ section.graphic }}" aria-hidden="true"></div>
     {% elif section.darkImage %}
       <img
