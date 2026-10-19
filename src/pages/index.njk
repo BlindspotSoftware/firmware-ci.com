@@ -5,7 +5,6 @@ permalink: /
 ---
 
 {% include "partials/sections/hero.njk" %}
-{% include "partials/sections/intro.njk" %}
 {% include "partials/sections/facts.njk" %}
 
 {%- for section in home.textImageSections -%}
@@ -13,4 +12,5 @@ permalink: /
   {% include "partials/text-image.njk" %}
 {%- endfor -%}
 
+{% script src = "loop.js" %}
 {% script src = "pages/index.js" %}

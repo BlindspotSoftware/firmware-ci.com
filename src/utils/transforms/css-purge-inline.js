@@ -31,8 +31,9 @@ export const purgeCSS = async (content, outputPath) => {
       ],
       css: cssFiles,
       safelist: {
-        standard: [/^m/, /^l/, /^:/],
-        greedy: [/role/, /is-in-view/, /aria-expanded/],
+        // is-*: state classes set at runtime (e.g. by the hero loop)
+        standard: [/^m/, /^l/, /^:/, /^is-/],
+        greedy: [/role/, /is-in-view/, /aria-expanded/, /loop/],
       },
       keyframes: true,
     });

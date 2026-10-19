@@ -1,45 +1,82 @@
-<section class="hero | wrapper">
-  <div class="stack-s-m">
-    <h1 data-stagger>
-      Accelerate <br /> your 
-      Firmware <br /> Development
-    </h1>
+{#
+  Hero: the OCP booth loop, with the core message permanently below it.
+  Scenes and copy: _data/heroLoop.js · styles: blocks/_loop.css · player: scripts/loop.js
+#}
+<section class="hero | wrapper" aria-labelledby="hero-title">
+  <div class="loop" data-loop role="region" aria-roledescription="carousel" aria-label="FirmwareCI at a glance">
+    <svg class="loop__defs" aria-hidden="true" focusable="false">
+      <symbol id="loop-logo-firmwareci" viewBox="0 0 102 62"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="{{ heroLoop.marks.firmwareci }}"/></symbol>
+      <symbol id="loop-logo-blindspot" viewBox="0 0 72 58"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="{{ heroLoop.marks.blindspot }}"/></symbol>
+    </svg>
 
-    <p data-stagger class="hero__description">
-      Test your Firmware with ease using the next-generation
-      AI-driven test framework: FirmwareCI.
-    </p>
+    <div class="loop__frame">
+      <div class="loop__stage">
+        <div class="loop__ambient" aria-hidden="true">
+          {%- for leaf in heroLoop.leaves %}
+          <span class="loop__leaf loop__leaf--{{ leaf.r }}" style="--x:{{ leaf.x }}px;--y:{{ leaf.y }}px;--px:{{ leaf.px }}px;--py:{{ leaf.py }}px;--s:{{ leaf.s }}px;--c:{{ leaf.c }};--dx:{{ (-34 if loop.index0 % 2 else 34) }}px;--dy:{{ (loop.index0 % 3 - 1) * 28 }}px;--rot:{{ (-3 if loop.index0 % 2 else 3) }}deg;animation-delay:-{{ loop.index0 * 5 }}s"></span>
+          {%- endfor %}
+        </div>
 
-    <a
-      data-stagger
-      href="https://app.firmware-ci.com/public-orgs"
-      class="button button--glow button--large"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      See it in action <span class="button__arrow" aria-hidden="true">→</span>
-    </a>
+        <div class="loop__brand" aria-hidden="true">
+          <svg viewBox="0 0 102 62" focusable="false"><use href="#loop-logo-firmwareci"/></svg>
+          <div>
+            <div class="loop__brand-name">FirmwareCI</div>
+            <div class="loop__brand-line">CI for firmware, on real hardware.</div>
+          </div>
+        </div>
+
+        <div class="loop__scenes" aria-live="off">
+          {%- for scene in heroLoop.scenes %}
+          <section class="loop__scene loop__scene--{{ scene.type }}{% if loop.first %} is-active{% endif %}" id="loop-{{ scene.key }}" data-key="{{ scene.key }}" data-seconds="{{ scene.seconds }}" role="group" aria-roledescription="slide" aria-label="{{ scene.index }} of {{ heroLoop.scenes | length }}: {{ scene.label }}">
+            {{- scene.html | safe -}}
+          </section>
+          {%- endfor %}
+        </div>
+
+        <div class="loop__controls">
+          <button type="button" class="loop__toggle" aria-label="Pause the loop">
+            <span class="loop__toggle-icon" aria-hidden="true"></span>
+          </button>
+          <ol class="loop__dots" role="list">
+            {%- for scene in heroLoop.scenes %}
+            <li>
+              <button type="button" class="loop__dot {{ 'is-running' if loop.first else 'is-queued' }}" data-index="{{ loop.index0 }}" aria-label="Scene {{ scene.index }} of {{ heroLoop.scenes | length }}: {{ scene.label }}"{% if loop.first %} aria-current="step"{% endif %}><i></i></button>
+            </li>
+            {%- endfor %}
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop__cta">
+      <svg class="loop__blindspot" viewBox="0 0 72 58" aria-hidden="true" focusable="false"><use href="#loop-logo-blindspot"/></svg>
+      <a class="button button--glow button--large" href="{{ heroLoop.cta.url }}" rel="noopener noreferrer" target="_blank">
+        {{ heroLoop.cta.text }} <span class="button__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <noscript>
+      <img class="loop__noscript" src="/assets/images/hero.webp" alt="The FirmwareCI dashboard: job requests with success rates and per-branch test history." width="1600" height="1000" eleventy:ignore />
+    </noscript>
   </div>
+  {# Scale the stage to its frame before first paint; scripts/loop.js keeps it in step on resize. #}
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      var frame = root && root.querySelector(".loop__frame");
+      var stage = root && root.querySelector(".loop__stage");
+      if (frame && stage && stage.offsetWidth) {
+        root.style.setProperty("--k", frame.clientWidth / stage.offsetWidth);
+        root.classList.add("is-scaled");
+      }
+    })();
+  </script>
 
-  <img
-    data-stagger
-    class="themed-media themed-media--light"
-    src="/assets/images/hero.webp"
-    eleventy:widths="400, 600, 800, 1200, 1600"
-    eleventy:formats="avif,webp"
-    alt="The FirmwareCI dashboard: job requests with success rates and per-branch test history."
-    sizes="(min-width: 50em) 50rem, 100vw"
-    loading="eager"
-    fetchpriority="high" />
-
-  <img
-    data-stagger
-    class="themed-media themed-media--dark"
-    src="/assets/images/hero-dark.webp"
-    eleventy:widths="400, 600, 800, 1200, 1600"
-    eleventy:formats="avif,webp"
-    alt=""
-    aria-hidden="true"
-    sizes="(min-width: 50em) 50rem, 100vw"
-    loading="eager" />
+  <div class="hero__copy">
+    <h1 id="hero-title">Continuous integration for firmware. <span>On real hardware.</span></h1>
+    <p class="hero__description">
+      FirmwareCI automates regression testing on real hardware and plugs into your CI/CD pipeline.
+      Every commit is tested automatically, so you catch bugs earlier, cut manual effort and ship faster.
+    </p>
+  </div>
 </section>
