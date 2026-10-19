@@ -1,0 +1,25 @@
+{#
+  The AI section's visual: the question and answer of the loop's AI scene
+  (_data/heroLoop.js, key "ai"), here with the MCP tools the assistant calls.
+#}
+{%- for scene in heroLoop.scenes %}{% if scene.key == "ai" %}
+<figure class="text-image__graphic chat-visual">
+  <div class="chat-visual__window">
+    <p class="chat-visual__bar" aria-hidden="true">
+      <span class="chat-visual__dots"><i></i><i></i><i></i></span>
+      Your AI assistant
+      <span class="chat-visual__mcp">MCP</span>
+    </p>
+    <p class="chat-visual__q"><span class="sr-only">Question: </span>{{ scene.question }}</p>
+    <ul class="chat-visual__tools" role="list" aria-label="MCP tools called">
+      <li>fwci_list_jobs</li>
+      <li>fwci_get_job_logs</li>
+    </ul>
+    <div class="chat-visual__a">
+      <p class="chat-visual__who">{{ scene.who }} <span class="chat-visual__sev">{{ scene.severity }}</span></p>
+      <p class="chat-visual__txt">{{ scene.answer | safe }}</p>
+    </div>
+  </div>
+  <figcaption class="sr-only">An AI assistant answers a question about a failed run with data it reads from FirmwareCI over MCP.</figcaption>
+</figure>
+{%- endif %}{% endfor %}

@@ -7,10 +7,15 @@ permalink: /
 {% include "partials/sections/hero.njk" %}
 {% include "partials/sections/facts.njk" %}
 
-{%- for section in home.textImageSections -%}
-  {% set reverse = loop.index0 % 2 !== 0 %}
-  {% include "partials/text-image.njk" %}
-{%- endfor -%}
+{# The feature area: dutctl first, then one section per feature scene of the loop (see _data/home.js). #}
+<div id="features">
+  {% include "partials/sections/dutctl.njk" %}
+
+  {%- for section in home.featureSections -%}
+    {% set reverse = loop.index0 % 2 !== 0 %}
+    {% include "partials/text-image.njk" %}
+  {%- endfor -%}
+</div>
 
 {% script src = "loop.js" %}
 {% script src = "pages/index.js" %}

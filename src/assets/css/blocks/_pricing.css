@@ -58,3 +58,15 @@
   width: 100%;
   margin-top: 0;
 }
+
+/* Features that have a section on the homepage link to it. */
+.pricing-list a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-green);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}

@@ -45,7 +45,7 @@
     text-wrap: pretty;
   }
 
-  @media (--lg) {
+  @media (--xl) {
     flex-direction: row;
     gap: var(--space-2xl-3xl);
     align-items: center;
@@ -69,7 +69,7 @@
 }
 
 .text-image__content--reverse {
-  @media (--lg) {
+  @media (--xl) {
     flex-direction: row-reverse;
 
     & img {
@@ -86,11 +86,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2xs);
-  max-width: 45ch;
+  max-width: 56ch;
   border-radius: 1rem;
 
-  @media (--lg) {
-    flex: 0 1 27rem;
+  @media (--xl) {
+    flex: 0 0 min(30rem, 44%);
+    max-width: none;
     align-self: center;
     padding: var(--space-m-l);
     background-color: var(--color-gray-6);
@@ -114,6 +115,74 @@
   font-size: 0.95em;
 }
 
+/* Links to the other feature sections, inside the copy. */
+.text-image__copy a:not(.button) {
+  font-weight: 700;
+  color: var(--color-gray-1);
+  text-decoration: underline;
+  text-decoration-color: var(--color-green);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+.text-image__copy code {
+  padding: 0.05em 0.35em;
+  border-radius: 0.3em;
+  background-color: color-mix(in oklch, var(--color-gray-1) 9%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* What the loop's scene teases, a point at a time — with the app's leaf. */
+.text-image__points {
+  display: grid;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-3xs);
+  padding: 0;
+
+  & li {
+    position: relative;
+    padding-inline-start: 1.6em;
+    color: var(--color-gray-2);
+    text-wrap: pretty;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0.3em;
+      inline-size: 0.85em;
+      block-size: 0.85em;
+      border: 2px solid var(--color-gray-1);
+      border-radius: 0 100% 0 0;
+      background-color: var(--color-green);
+    }
+  }
+
+  & b {
+    font-weight: 700;
+    color: var(--color-gray-1);
+  }
+}
+
+.text-image__callout {
+  margin-block-start: var(--space-2xs);
+  padding: var(--space-xs) var(--space-s);
+  border: 2px dashed var(--color-gray-3);
+  border-radius: 0.75rem 2rem 0.75rem 0.75rem;
+  text-wrap: pretty;
+
+  & strong {
+    display: block;
+    font-weight: var(--weight-ultrabold);
+  }
+}
+
 /* ── Decorative graphics ───────────────────────────────────────────────────
    Replace the stock photos in a couple of sections with clean, on-brand
    gradient art, carrying the same framed/tilted treatment as the screenshots.
@@ -129,7 +198,7 @@
   position: relative;
   isolation: isolate;
 
-  @media (--lg) {
+  @media (--xl) {
     flex: 1 1 auto;
     max-width: 60%;
     transform: perspective(1600px) rotateX(3deg) rotateY(-9deg) rotateZ(1.5deg);
@@ -137,7 +206,7 @@
 }
 
 .text-image__content--reverse .text-image__graphic {
-  @media (--lg) {
+  @media (--xl) {
     transform: perspective(1600px) rotateX(3deg) rotateY(9deg) rotateZ(-1.5deg);
   }
 }
@@ -170,4 +239,149 @@
     linear-gradient(color-mix(in oklch, var(--color-green) 20%, transparent) 1px, transparent 1px),
     linear-gradient(90deg, color-mix(in oklch, var(--color-green) 20%, transparent) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 2.4rem 2.4rem, 2.4rem 2.4rem;
+}
+
+/* ── Chat (the AI section) ─────────────────────────────────────────────────
+   The loop's AI scene at section size: the question, the MCP tools the
+   assistant calls, and its answer, in the loop's look: ink outlines, a leaf
+   corner, the status colours. Sizes follow the figure's width (cqi). */
+.chat-visual {
+  container-type: inline-size;
+  aspect-ratio: auto;
+  margin: 0;
+  background-color: var(--color-gray-5);
+  color: var(--color-gray-1);
+
+  /* an ambient leaf, as on the loop's stage */
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block-start: -12cqi;
+    inset-inline-end: -9cqi;
+    inline-size: 34cqi;
+    block-size: 34cqi;
+    border: 0.5cqi solid currentColor;
+    border-radius: 0 0 0 100%;
+    background-color: var(--color-orange);
+    opacity: 0.08;
+  }
+}
+
+.chat-visual__window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 3cqi, 1.5rem);
+  padding: clamp(1rem, 5.5cqi, 3rem);
+}
+
+.chat-visual__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: clamp(0.75rem, 2.1cqi, 0.95rem);
+  font-weight: 700;
+  color: var(--color-gray-2);
+}
+
+.chat-visual__dots {
+  display: flex;
+  gap: 0.35em;
+
+  & i {
+    inline-size: 0.7em;
+    block-size: 0.7em;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+  }
+}
+
+.chat-visual__mcp {
+  margin-inline-start: auto;
+  padding: 0.15em 0.7em;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+}
+
+.chat-visual__q {
+  align-self: flex-end;
+  max-inline-size: 85%;
+  padding: clamp(0.6rem, 1.8cqi, 1rem) clamp(0.9rem, 3cqi, 1.6rem);
+  border-radius: 2em 2em 0 2em;
+  background-color: var(--color-gray-1);
+  color: var(--color-gray-6);
+  font-size: clamp(0.95rem, 3.1cqi, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.chat-visual__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  padding: 0;
+  font-family: ui-monospace, "JetBrains Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  font-size: clamp(0.72rem, 2.1cqi, 0.95rem);
+  color: var(--color-gray-2);
+
+  & li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.25em 0.75em;
+    border: 2px solid var(--color-gray-4);
+    border-radius: 999px;
+    background-color: var(--color-gray-6);
+
+    /* done: the app's green leaf */
+    &::before {
+      content: "";
+      inline-size: 0.8em;
+      block-size: 0.8em;
+      border: 2px solid var(--color-gray-1);
+      border-radius: 0 100% 0 0;
+      background-color: var(--color-green);
+    }
+  }
+}
+
+.chat-visual__a {
+  align-self: flex-start;
+  display: grid;
+  gap: 0.6em;
+  max-inline-size: 92%;
+  padding: clamp(0.8rem, 2.8cqi, 1.5rem) clamp(1rem, 3.4cqi, 1.8rem);
+  border: clamp(3px, 0.45cqi, 4px) solid var(--color-gray-1);
+  border-radius: 0 clamp(2rem, 7cqi, 4rem) 0 0;
+  background-color: var(--color-gray-6);
+}
+
+.chat-visual__who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+  font-size: clamp(0.75rem, 2.1cqi, 0.95rem);
+  font-weight: 700;
+  color: var(--color-gray-2);
+}
+
+.chat-visual__sev {
+  padding: 0.15em 0.75em;
+  border-radius: 999px;
+  background-color: var(--color-orange);
+  color: #222;
+  font-weight: 800;
+}
+
+.chat-visual__txt {
+  font-size: clamp(0.95rem, 2.9cqi, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-wrap: pretty;
+
+  & span {
+    font-weight: 500;
+    color: var(--color-gray-2);
+  }
 }

@@ -1,0 +1,250 @@
+/* The start of the feature area: dutctl, free and open source, next to the
+   whole FirmwareCI system. Two cards side by side on wide screens, stacked on
+   phones; the FirmwareCI points link down to the feature sections. */
+.dutctl__content {
+  display: grid;
+  gap: var(--space-l);
+}
+
+.dutctl__head {
+  display: grid;
+  gap: var(--space-2xs);
+  max-inline-size: 50rem;
+}
+
+.dutctl__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-ultrabold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+
+  @media (--lg) {
+    font-size: var(--text-3xl);
+  }
+}
+
+.dutctl__lead {
+  max-inline-size: 62ch;
+  font-size: var(--text-md);
+  color: var(--color-gray-2);
+  text-wrap: pretty;
+}
+
+/* Phones: dutctl, FirmwareCI, the note on other control layers. Wide
+   screens: dutctl and the note on the left, FirmwareCI on the right. */
+.dutctl__plans {
+  display: grid;
+  grid-template-areas: "dutctl" "fwci" "own";
+  gap: var(--space-m);
+
+  @media (--xl) {
+    grid-template-areas: "dutctl fwci" "own fwci";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-rows: auto 1fr;
+    gap: var(--space-m) var(--space-l);
+  }
+}
+
+.plan--dutctl {
+  grid-area: dutctl;
+}
+
+.plan--fwci {
+  grid-area: fwci;
+  align-self: start;
+}
+
+.dutctl__own {
+  grid-area: own;
+  align-self: start;
+}
+
+/* ── the two cards ──────────────────────────────────────────────────────── */
+.plan {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border: 1px solid var(--border-card, rgb(0 0 0 / 0.08));
+  border-radius: 0.75rem 2.5rem 0.75rem 0.75rem;
+  background-color: var(--color-gray-6);
+  box-shadow: 12px 12px 32px -18px rgb(0 0 0 / 0.25);
+
+  @media (--lg) {
+    padding: var(--space-l);
+  }
+
+  & .icon {
+    inline-size: 1.15em;
+    block-size: 1.15em;
+  }
+}
+
+/* the whole system: the stronger outline */
+.plan--fwci {
+  border: 3px solid var(--color-gray-1);
+}
+
+.plan__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+}
+
+.plan__badge {
+  padding: 0.2em 0.75em;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.plan__badge--pre {
+  border-color: var(--color-orange);
+}
+
+.plan__badge--fwci {
+  border-color: var(--color-purple);
+}
+
+/* the title carries the app's leaf: green for dutctl, purple for FirmwareCI */
+.plan__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2em 0.55em;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-ultrabold);
+  line-height: 1.15;
+
+  &::before {
+    content: "";
+    flex: none;
+    inline-size: 0.95em;
+    block-size: 0.95em;
+    border: 3px solid var(--color-gray-1);
+    border-radius: 0 100% 0 0;
+    background-color: var(--color-green);
+  }
+
+  & span {
+    flex-basis: 100%;
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-gray-2);
+  }
+}
+
+.plan--fwci .plan__title::before {
+  background-color: var(--color-purple);
+}
+
+.plan__lead {
+  color: var(--color-gray-2);
+  text-wrap: pretty;
+}
+
+.plan__list {
+  display: grid;
+  gap: var(--space-xs);
+  padding: 0;
+
+  & li {
+    position: relative;
+    padding-inline-start: 1.6em;
+    color: var(--color-gray-2);
+    text-wrap: pretty;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0.3em;
+      inline-size: 0.85em;
+      block-size: 0.85em;
+      border: 2px solid var(--color-gray-1);
+      border-radius: 0 100% 0 0;
+      background-color: var(--color-green);
+    }
+  }
+}
+
+.plan__list--fwci {
+  & li::before {
+    background-color: var(--color-purple);
+  }
+
+  /* each point opens its feature section further down */
+  & a {
+    display: block;
+    inline-size: fit-content;
+    font-weight: var(--weight-ultrabold);
+    color: var(--color-gray-1);
+    text-decoration: underline;
+    text-decoration-color: var(--color-purple);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+/* buttons sit at the foot of the card, so both cards line up */
+.plan__actions {
+  margin-block-start: auto;
+  padding-block-start: var(--space-2xs);
+}
+
+.plan__note {
+  font-size: var(--text-sm);
+  color: var(--color-gray-2);
+  text-wrap: pretty;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    inline-size: 0.8em;
+    block-size: 0.8em;
+    margin-inline-end: 0.5em;
+    border: 2px solid var(--color-gray-1);
+    border-radius: 0 100% 0 0;
+    background-color: var(--color-orange);
+    vertical-align: -0.05em;
+  }
+}
+
+/* ── below the cards ────────────────────────────────────────────────────── */
+.dutctl__own {
+  max-inline-size: 72ch;
+  padding: var(--space-s) var(--space-m);
+  border: 2px dashed var(--color-gray-3);
+  border-radius: 0.75rem 2rem 0.75rem 0.75rem;
+  text-wrap: pretty;
+
+  & strong {
+    display: block;
+    margin-block-end: 0.15em;
+    font-weight: var(--weight-ultrabold);
+  }
+
+  & a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--color-green);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.dutctl__funding {
+  font-size: var(--text-sm);
+  color: var(--color-gray-2);
+}

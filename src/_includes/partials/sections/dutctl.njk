@@ -1,0 +1,77 @@
+{#
+  The start of the feature area: dutctl, our free and open-source Hardware
+  Abstraction Layer, next to what the whole FirmwareCI system adds on top.
+  Each FirmwareCI point links down to its feature section. Copy, and how to
+  word the Hardware Abstraction Layer: home.dutctl in _data/home.js.
+#}
+<section class="dutctl | section" id="{{ home.dutctl.id }}" aria-labelledby="dutctl-title">
+  <div class="wrapper | dutctl__content">
+    <header class="dutctl__head">
+      <h2 id="dutctl-title" class="dutctl__title">{{ home.dutctl.headline }}</h2>
+      <p class="dutctl__lead">
+        dutctl is our open-source Hardware Abstraction Layer: one interface to power, flash and reach
+        every board in your lab. Use it on its own to put your bench on the network today, and add FirmwareCI
+        on top when every commit should be tested on it.
+      </p>
+    </header>
+
+    <div class="dutctl__plans">
+      <article class="plan plan--dutctl" aria-labelledby="plan-dutctl">
+        <p class="plan__badges">
+          <span class="plan__badge">Open source · BSD-2-Clause</span>
+          <span class="plan__badge plan__badge--pre">Pre-release</span>
+        </p>
+        <h3 id="plan-dutctl" class="plan__title">dutctl <span>Hardware Abstraction Layer, free and open source</span></h3>
+
+        <ul class="plan__list" role="list">
+          {%- for item in home.dutctl.does %}
+          <li>{{ item }}</li>
+          {%- endfor %}
+        </ul>
+
+        <div class="plan__actions | cluster" style="--cluster-gap: var(--space-2xs)">
+          <a class="button button--primary" href="{{ home.dutctl.repo }}" rel="noopener noreferrer" target="_blank">
+            {% icon icon = "github" %} dutctl on GitHub
+          </a>
+          <a class="button button--secondary" href="{{ home.dutctl.docs }}" rel="noopener noreferrer" target="_blank">
+            Connect it to FirmwareCI
+          </a>
+        </div>
+
+        <p class="plan__note">
+          dutctl is a public pre-release on its way to v1.0, so interfaces may still change.
+          Issues and feedback are welcome on GitHub.
+        </p>
+      </article>
+
+      <article class="plan plan--fwci" aria-labelledby="plan-fwci">
+        <p class="plan__badges">
+          <span class="plan__badge plan__badge--fwci">Works with dutctl or your own</span>
+        </p>
+        <h3 id="plan-fwci" class="plan__title">FirmwareCI <span>The whole system</span></h3>
+        <p class="plan__lead">Everything on top of the Hardware Abstraction Layer that it takes to test every commit on real hardware, right where your team already works:</p>
+
+        <ul class="plan__list plan__list--fwci" role="list">
+          {%- for item in home.dutctl.fwci %}
+          <li><a href="{{ item.href }}">{{ item.title }}<span aria-hidden="true">&nbsp;↓</span></a> {{ item.text }}</li>
+          {%- endfor %}
+        </ul>
+
+        <div class="plan__actions | cluster" style="--cluster-gap: var(--space-2xs)">
+          <a class="button button--primary" href="/contact/">Talk to us</a>
+          <a class="button button--secondary" href="/pricing/">Plans and pricing</a>
+        </div>
+      </article>
+
+      <p class="dutctl__own">
+        <strong>Already have a Hardware Abstraction Layer of your own?</strong>
+        The lab control you already have, from scripts to a PDU, BMC or KVM interface, is a Hardware Abstraction
+        Layer too. Test steps such as Shell, Command or PiKVM drive it, so dutctl is an offer, not a requirement:
+        any board your Hardware Abstraction Layer can power, flash and reach, FirmwareCI can test.
+        <a href="#test-steps">More on test steps</a>
+      </p>
+    </div>
+
+    <p class="dutctl__funding">dutctl is supported by the NLnet Foundation through the NGI0 Commons Fund.</p>
+  </div>
+</section>
