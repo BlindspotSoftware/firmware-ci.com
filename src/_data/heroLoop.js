@@ -8,10 +8,13 @@
  * call to action: instead of "Live demo at this booth" the loop carries the
  * "See it in action" button that used to sit in the hero.
  *
- * Every scene has a `key`. A link to `/#loop-<key>` scrolls to the loop and
- * starts it on that scene.
+ * Every scene has a `key`; a link to `/#loop-<key>` scrolls to the loop and
+ * starts it on that scene. A feature scene also gets a "Learn more ↓" link
+ * down to the section that tells more about it: each section in _data/home.js
+ * names its scene (`scene`), see `more` below.
  */
 import fs from "node:fs";
+import home from "./home.js";
 
 const cta = {
   text: "See it in action",
@@ -196,6 +199,19 @@ const R = {
 
 const pathOf = (file) => fs.readFileSync(`./src/assets/icons/${file}`, "utf8").match(/\sd="([^"]+)"/)[1];
 
+/* ---------- "Learn more ↓": the feature section that belongs to a scene ---------- */
+
+const sections = [home.dutctl, ...home.featureSections];
+for (const section of sections) {
+  if (!scenes.some((scene) => scene.key === section.scene)) {
+    console.warn(`[heroLoop] section #${section.id} names no scene of the loop ("${section.scene}")`);
+  }
+}
+const more = (key) => {
+  const section = sections.find((s) => s.scene === key);
+  return section ? { href: `#${section.id}`, title: section.headline } : null;
+};
+
 export default {
   cta,
   marks: {
@@ -217,5 +233,6 @@ export default {
     index: i + 1,
     label: plain(s.headline),
     html: R[s.type](s),
+    more: more(s.key),
   })),
 };

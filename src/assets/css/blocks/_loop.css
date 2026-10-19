@@ -345,6 +345,71 @@
   }
 }
 
+/* "Learn more ↓" on a feature scene, top right and level with the brand: it
+   links down to the section that tells more. Its size has a floor in real
+   pixels (n / --k), so it stays easy to read and to hit when the stage is
+   scaled down far; on the narrowest phones the floor gives a little, so the
+   link keeps clear of the brand. */
+.loop__more {
+  --h: max(76px, calc(min(2.25rem, 10vw) / var(--k, 0.5)));
+  position: absolute;
+  inset-block-start: calc(108px - var(--h) / 2);
+  inset-inline-end: 96px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--h) * 0.22);
+  block-size: var(--h);
+  padding-inline: calc(var(--h) * 0.4) calc(var(--h) * 0.12);
+  border: 4px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: max(32px, calc(min(0.8125rem, 3.75vw) / var(--k, 0.5)));
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    translate: 0 -6px;
+    background: var(--ink);
+    color: var(--inv);
+  }
+
+  &:focus-visible {
+    outline: 6px solid var(--running) !important;
+    outline-offset: 6px !important;
+  }
+
+  @media (--lg-max) {
+    inset-block-start: calc(95px - var(--h) / 2);
+    inset-inline-end: 64px;
+  }
+}
+
+/* keeps the fade-in of .in, and adds the hover */
+.loop .is-active .loop__more {
+  transition: opacity 0.7s var(--ease) var(--d, 0ms), transform 0.9s var(--ease) var(--d, 0ms),
+    translate 0.2s var(--ease), background-color 0.2s, color 0.2s;
+}
+
+.loop__more-arrow {
+  display: grid;
+  place-items: center;
+  inline-size: calc(var(--h) - 20px);
+  block-size: calc(var(--h) - 20px);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--inv);
+  transition: background-color 0.2s, color 0.2s;
+
+  .loop__more:hover & {
+    background: var(--inv);
+    color: var(--ink);
+  }
+}
+
 /* ── scenes ─────────────────────────────────────────────────────────────── */
 
 .loop__scene {

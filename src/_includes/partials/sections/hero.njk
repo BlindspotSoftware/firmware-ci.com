@@ -29,6 +29,9 @@
           {%- for scene in heroLoop.scenes %}
           <section class="loop__scene loop__scene--{{ scene.type }}{% if loop.first %} is-active{% endif %}" id="loop-{{ scene.key }}" data-key="{{ scene.key }}" data-seconds="{{ scene.seconds }}" role="group" aria-roledescription="slide" aria-label="{{ scene.index }} of {{ heroLoop.scenes | length }}: {{ scene.label }}">
             {{- scene.html | safe -}}
+            {%- if scene.more %}
+            <a class="loop__more in" href="{{ scene.more.href }}" style="--d:1200ms">Learn more<span class="sr-only">: {{ scene.more.title }}</span><span class="loop__more-arrow" aria-hidden="true">↓</span></a>
+            {%- endif %}
           </section>
           {%- endfor %}
         </div>

@@ -3,8 +3,8 @@
 // - scales the fixed-size stage to its frame (--k)
 // - advances the scenes on their timers and drives the pipeline scene
 // - pause/play button, one button per scene, ← → while focus is in the loop
-// - holds while the loop is off screen, the tab is hidden, or keyboard focus
-//   is inside it
+// - holds while the loop is off screen, the tab is hidden, keyboard focus is
+//   inside it, or the pointer rests on a scene's "Learn more" link
 // - links to #loop-<key> scroll to the loop and start it on that scene
 
 const PIPELINE_START = 1300; // ms into the pipeline scene before the first step runs
@@ -26,7 +26,7 @@ export function initLoop(root) {
   let last = null; // timestamp of the previous frame
   let raf = 0;
   let userPaused = false;
-  const holds = new Set(); // "offscreen" | "hidden" | "focus"
+  const holds = new Set(); // "offscreen" | "hidden" | "focus" | "pointer"
 
   /* ---------- scale ---------- */
 
@@ -137,6 +137,13 @@ export function initLoop(root) {
   });
   root.addEventListener("focusout", (event) => {
     if (!root.contains(event.relatedTarget)) hold("focus", false);
+  });
+
+  // Hold while the pointer rests on a "Learn more" link, so the scene (and
+  // with it the link) can't change under the click.
+  root.querySelectorAll(".loop__more").forEach((link) => {
+    link.addEventListener("pointerenter", () => hold("pointer", true));
+    link.addEventListener("pointerleave", () => hold("pointer", false));
   });
 
   new IntersectionObserver(([entry]) => hold("offscreen", !entry.isIntersecting), {
